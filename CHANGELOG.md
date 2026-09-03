@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added UI-independent M1c text search service with forward, backward, wrapping and comparison options.
+- Added `Search.Find` command handling that updates selection and caret state through the Core command model.
+- Added simple Find / Find Next support to the Modern FIRST-ED WinForms sample.
 - Hardened M1a storage handling for BOM/preamble detection and preservation.
 - Added storage tests for UTF-8 BOM, UTF-32 BOM ordering, binary-content suspicion and file overwrite metadata.
 - Added the M1 `Edit.DeleteRight` command and dispatcher coverage tests.
