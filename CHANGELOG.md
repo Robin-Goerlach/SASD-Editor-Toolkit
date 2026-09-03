@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- Hardened M1a storage handling for BOM/preamble detection and preservation.
+- Added storage tests for UTF-8 BOM, UTF-32 BOM ordering, binary-content suspicion and file overwrite metadata.
+- Added the M1 `Edit.DeleteRight` command and dispatcher coverage tests.
+- Added dirty-document prompts to the Modern FIRST-ED sample before New, Open and Exit replace the current document.
+- Disabled XML documentation generation for test and sample assemblies while keeping it enabled for product assemblies.
+
 ## 0.0.0-repository-seed - 2026-09-03
 
 - Added repository seed for the C#/.NET reference implementation.

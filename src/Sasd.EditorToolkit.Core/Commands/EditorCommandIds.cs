@@ -12,6 +12,9 @@ public static class EditorCommandIds
     /// <summary>Delete left of the caret.</summary>
     public static readonly EditorCommandId DeleteLeft = new("Edit.DeleteLeft");
 
+    /// <summary>Delete right of the caret.</summary>
+    public static readonly EditorCommandId DeleteRight = new("Edit.DeleteRight");
+
     /// <summary>Undo the last edit.</summary>
     public static readonly EditorCommandId Undo = new("Edit.Undo");
 

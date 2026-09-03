@@ -16,9 +16,13 @@ public sealed class SasdEditorView : UserControl
     /// <summary>Creates the editor view control.</summary>
     public SasdEditorView()
     {
+        _surface.ViewStateChanged += (_, _) => ViewStateChanged?.Invoke(this, EventArgs.Empty);
         Controls.Add(_surface);
         BackColor = SystemColors.Window;
     }
+
+    /// <summary>Raised when the underlying surface changes caret or view state.</summary>
+    public event EventHandler? ViewStateChanged;
 
     /// <summary>Gets or sets the bound document.</summary>
     [Browsable(false)]

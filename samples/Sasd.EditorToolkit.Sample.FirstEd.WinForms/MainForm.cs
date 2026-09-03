@@ -1,3 +1,4 @@
+using System.Text;
 using System.Windows.Forms;
 using Sasd.EditorToolkit.Documents;
 using Sasd.EditorToolkit.Storage;
@@ -12,12 +13,14 @@ public sealed class MainForm : Form
     private readonly SasdEditorView _editor = new() { Dock = DockStyle.Fill };
     private readonly ToolStripStatusLabel _status = new();
     private readonly FileDocumentStorage _storage = new();
+    private TextDocument? _currentDocument;
 
     public MainForm()
     {
         Text = "SASD Editor Toolkit - Modern FIRST-ED Demo";
         Width = 1200;
         Height = 800;
+        _editor.ViewStateChanged += (_, _) => UpdateStatus();
 
         var menu = BuildMenu();
         var toolbar = BuildToolbar();
@@ -32,6 +35,17 @@ public sealed class MainForm : Form
 
         NewDocument();
         UpdateStatus();
+    }
+
+    protected override void OnFormClosing(FormClosingEventArgs e)
+    {
+        if (!ConfirmSaveBeforeDestructiveAction())
+        {
+            e.Cancel = true;
+            return;
+        }
+
+        base.OnFormClosing(e);
     }
 
     private MenuStrip BuildMenu()
@@ -72,6 +86,11 @@ public sealed class MainForm : Form
 
     private void NewDocument()
     {
+        if (!ConfirmSaveBeforeDestructiveAction())
+        {
+            return;
+        }
+
         var text = "// SASD Editor Toolkit - Modern FIRST-ED demo" + Environment.NewLine
             + "using Sasd.EditorToolkit.Documents;" + Environment.NewLine
             + "using Sasd.EditorToolkit.Text;" + Environment.NewLine
@@ -79,29 +98,48 @@ public sealed class MainForm : Form
             + "var document = new TextDocument(new LineTextBuffer());" + Environment.NewLine
             + "document.Insert(TextPosition.Start, \"Hello Editor Toolkit!\");" + Environment.NewLine;
 
-        _editor.Document = new TextDocument(new LineTextBuffer(text), new DocumentMetadata { DisplayName = "Untitled" });
-        _editor.Document.MarkSaved();
-        UpdateStatus();
+        var document = new TextDocument(new LineTextBuffer(text), new DocumentMetadata { DisplayName = "Untitled" });
+        document.MarkSaved();
+        BindDocument(document);
     }
 
     private async Task OpenDocumentAsync()
     {
+        if (!ConfirmSaveBeforeDestructiveAction())
+        {
+            return;
+        }
+
         using var dialog = new OpenFileDialog { Filter = "Text files|*.txt;*.md;*.cs;*.json;*.xml|All files|*.*" };
         if (dialog.ShowDialog(this) != DialogResult.OK)
         {
             return;
         }
 
-        var result = await _storage.LoadFileAsync(dialog.FileName);
-        _editor.Document = result.Document;
-        UpdateStatus();
+        try
+        {
+            var result = await _storage.LoadFileAsync(dialog.FileName);
+            BindDocument(result.Document);
+        }
+        catch (IOException ex)
+        {
+            ShowOpenError(ex);
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            ShowOpenError(ex);
+        }
+        catch (DecoderFallbackException ex)
+        {
+            ShowOpenError(ex);
+        }
     }
 
-    private async Task SaveDocumentAsync(bool saveAs)
+    private async Task<bool> SaveDocumentAsync(bool saveAs)
     {
         if (_editor.Document is null)
         {
-            return;
+            return false;
         }
 
         var path = _editor.Document.Metadata.FilePath;
@@ -110,14 +148,91 @@ public sealed class MainForm : Form
             using var dialog = new SaveFileDialog { Filter = "Text files|*.txt;*.md;*.cs;*.json;*.xml|All files|*.*" };
             if (dialog.ShowDialog(this) != DialogResult.OK)
             {
-                return;
+                return false;
             }
 
             path = dialog.FileName;
         }
 
-        await _storage.SaveFileAsync(_editor.Document, path);
+        try
+        {
+            await _storage.SaveFileAsync(_editor.Document, path);
+            UpdateStatus();
+            return true;
+        }
+        catch (IOException ex)
+        {
+            ShowSaveError(ex);
+            return false;
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            ShowSaveError(ex);
+            return false;
+        }
+    }
+
+    private void BindDocument(TextDocument document)
+    {
+        if (_currentDocument is not null)
+        {
+            _currentDocument.Buffer.Changed -= DocumentBufferChanged;
+        }
+
+        _currentDocument = document;
+        _currentDocument.Buffer.Changed += DocumentBufferChanged;
+        _editor.Document = document;
         UpdateStatus();
+    }
+
+    private void DocumentBufferChanged(object? sender, TextBufferChangedEventArgs e) => UpdateStatus();
+
+    private bool ConfirmSaveBeforeDestructiveAction()
+    {
+        if (_editor.Document is null || !_editor.Document.IsDirty)
+        {
+            return true;
+        }
+
+        var displayName = _editor.Document.Metadata.DisplayName;
+        var result = MessageBox.Show(
+            this,
+            $"Save changes to '{displayName}' before continuing?",
+            "Unsaved changes",
+            MessageBoxButtons.YesNoCancel,
+            MessageBoxIcon.Warning);
+
+        if (result == DialogResult.Cancel)
+        {
+            return false;
+        }
+
+        if (result == DialogResult.No)
+        {
+            return true;
+        }
+
+        return SaveDocumentAsync(saveAs: false).GetAwaiter().GetResult();
+    }
+
+    private void ShowOpenError(Exception exception)
+    {
+        MessageBox.Show(
+            this,
+            exception.Message,
+            "Open failed",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Error);
+    }
+
+    private void ShowSaveError(Exception exception)
+    {
+        MessageBox.Show(
+            this,
+            exception.Message,
+            "Save failed",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Error);
     }
 
     private void UpdateStatus()
