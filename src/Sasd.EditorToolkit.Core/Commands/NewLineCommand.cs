@@ -14,7 +14,13 @@ public sealed class NewLineCommand : IEditorCommand
     /// <inheritdoc />
     public ValueTask<CommandResult> ExecuteAsync(EditorCommandContext context, CancellationToken cancellationToken = default)
     {
-        var text = context.Document.Metadata.PreferredLineEnding == LineEndingKind.Lf ? "\n" : "\r\n";
+        var text = context.Document.Metadata.PreferredLineEnding switch
+        {
+            LineEndingKind.Cr => "\r",
+            LineEndingKind.Lf => "\n",
+            _ => "\r\n"
+        };
+
         var caret = context.ViewState.CaretPosition;
         context.Document.Insert(caret, text);
         context.ViewState.MoveCaret(new TextPosition(caret.Line + 1, 0));
