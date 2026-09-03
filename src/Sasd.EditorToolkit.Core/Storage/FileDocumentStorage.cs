@@ -10,13 +10,18 @@ public sealed class FileDocumentStorage : IDocumentStorage
     /// <inheritdoc />
     public async Task<DocumentLoadResult> LoadAsync(Stream source, DocumentLoadOptions options, CancellationToken cancellationToken = default)
     {
+        ArgumentNullException.ThrowIfNull(source);
+        ArgumentNullException.ThrowIfNull(options);
+
         using var memory = new MemoryStream();
         await source.CopyToAsync(memory, cancellationToken).ConfigureAwait(false);
         var bytes = memory.ToArray();
-        var binarySuspected = bytes.Contains((byte)0);
-        var encoding = DetectEncoding(bytes) ?? options.FallbackEncoding ?? new UTF8Encoding(false, true);
-        var preambleLength = encoding.GetPreamble().Length;
-        var text = encoding.GetString(bytes, StartsWith(bytes, encoding.GetPreamble()) ? preambleLength : 0, StartsWith(bytes, encoding.GetPreamble()) ? bytes.Length - preambleLength : bytes.Length);
+
+        var binarySuspected = Array.IndexOf(bytes, (byte)0) >= 0;
+        var detection = DetectEncoding(bytes);
+        var encoding = detection?.Encoding ?? options.FallbackEncoding ?? new UTF8Encoding(false, true);
+        var offset = detection?.PreambleLength ?? 0;
+        var text = encoding.GetString(bytes, offset, bytes.Length - offset);
 
         var document = new TextDocument(new LineTextBuffer(text), new DocumentMetadata { Encoding = encoding });
         document.MarkSaved();
@@ -27,7 +32,19 @@ public sealed class FileDocumentStorage : IDocumentStorage
     public async Task SaveAsync(TextDocument document, Stream destination, DocumentSaveOptions options, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(document);
+        ArgumentNullException.ThrowIfNull(destination);
+        ArgumentNullException.ThrowIfNull(options);
+
         var encoding = document.Metadata.Encoding;
+        if (options.WriteEncodingPreamble)
+        {
+            var preamble = encoding.GetPreamble();
+            if (preamble.Length > 0)
+            {
+                await destination.WriteAsync(preamble, cancellationToken).ConfigureAwait(false);
+            }
+        }
+
         var bytes = encoding.GetBytes(document.Buffer.GetText());
         await destination.WriteAsync(bytes, cancellationToken).ConfigureAwait(false);
         await destination.FlushAsync(cancellationToken).ConfigureAwait(false);
@@ -77,23 +94,44 @@ public sealed class FileDocumentStorage : IDocumentStorage
         document.MarkSaved();
     }
 
-    private static Encoding? DetectEncoding(byte[] bytes)
+    private static EncodingDetection? DetectEncoding(byte[] bytes)
     {
-        if (StartsWith(bytes, Encoding.UTF8.GetPreamble())) return new UTF8Encoding(false, true);
-        if (StartsWith(bytes, Encoding.Unicode.GetPreamble())) return Encoding.Unicode;
-        if (StartsWith(bytes, Encoding.BigEndianUnicode.GetPreamble())) return Encoding.BigEndianUnicode;
-        if (StartsWith(bytes, Encoding.UTF32.GetPreamble())) return Encoding.UTF32;
-        return null;
+        var utf32LittleEndian = new UTF32Encoding(bigEndian: false, byteOrderMark: true, throwOnInvalidCharacters: true);
+        var utf32BigEndian = new UTF32Encoding(bigEndian: true, byteOrderMark: true, throwOnInvalidCharacters: true);
+        var utf8WithBom = new UTF8Encoding(encoderShouldEmitUTF8Identifier: true, throwOnInvalidBytes: true);
+        var utf16LittleEndian = new UnicodeEncoding(bigEndian: false, byteOrderMark: true, throwOnInvalidBytes: true);
+        var utf16BigEndian = new UnicodeEncoding(bigEndian: true, byteOrderMark: true, throwOnInvalidBytes: true);
+
+        return Detect(bytes, utf32LittleEndian)
+            ?? Detect(bytes, utf32BigEndian)
+            ?? Detect(bytes, utf8WithBom)
+            ?? Detect(bytes, utf16LittleEndian)
+            ?? Detect(bytes, utf16BigEndian);
+    }
+
+    private static EncodingDetection? Detect(byte[] bytes, Encoding encoding)
+    {
+        var preamble = encoding.GetPreamble();
+        return StartsWith(bytes, preamble) ? new EncodingDetection(encoding, preamble.Length) : null;
     }
 
     private static bool StartsWith(byte[] bytes, byte[] prefix)
     {
-        if (prefix.Length == 0 || bytes.Length < prefix.Length) return false;
+        if (prefix.Length == 0 || bytes.Length < prefix.Length)
+        {
+            return false;
+        }
+
         for (var i = 0; i < prefix.Length; i++)
         {
-            if (bytes[i] != prefix[i]) return false;
+            if (bytes[i] != prefix[i])
+            {
+                return false;
+            }
         }
 
         return true;
     }
+
+    private sealed record EncodingDetection(Encoding Encoding, int PreambleLength);
 }
