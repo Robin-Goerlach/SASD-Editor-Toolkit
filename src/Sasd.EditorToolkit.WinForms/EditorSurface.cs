@@ -1,5 +1,6 @@
-using System.Windows.Forms;
+using System.ComponentModel;
 using System.Drawing;
+using System.Windows.Forms;
 using Sasd.EditorToolkit.Documents;
 using Sasd.EditorToolkit.Editing;
 using Sasd.EditorToolkit.Text;
@@ -20,6 +21,8 @@ public sealed class EditorSurface : Control
     }
 
     /// <summary>Gets or sets the bound document.</summary>
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public TextDocument? Document
     {
         get => _document;
@@ -43,6 +46,8 @@ public sealed class EditorSurface : Control
     }
 
     /// <summary>Gets the view state.</summary>
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public EditorViewState ViewState { get; } = new();
 
     /// <inheritdoc />
