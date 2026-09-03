@@ -71,17 +71,21 @@ public sealed class FileDocumentStorage : IDocumentStorage
         {
             var directory = Path.GetDirectoryName(Path.GetFullPath(path)) ?? Directory.GetCurrentDirectory();
             var tempPath = Path.Combine(directory, $".{Path.GetFileName(path)}.{Guid.NewGuid():N}.tmp");
-            await using (var stream = File.Create(tempPath))
-            {
-                await SaveAsync(document, stream, options, cancellationToken).ConfigureAwait(false);
-            }
 
-            if (File.Exists(path))
+            try
             {
-                File.Delete(path);
-            }
+                await using (var stream = File.Create(tempPath))
+                {
+                    await SaveAsync(document, stream, options, cancellationToken).ConfigureAwait(false);
+                }
 
-            File.Move(tempPath, path);
+                File.Move(tempPath, path, overwrite: true);
+            }
+            catch
+            {
+                TryDeleteTemporaryFile(tempPath);
+                throw;
+            }
         }
         else
         {
@@ -131,6 +135,23 @@ public sealed class FileDocumentStorage : IDocumentStorage
         }
 
         return true;
+    }
+
+    private static void TryDeleteTemporaryFile(string tempPath)
+    {
+        try
+        {
+            if (File.Exists(tempPath))
+            {
+                File.Delete(tempPath);
+            }
+        }
+        catch (IOException)
+        {
+        }
+        catch (UnauthorizedAccessException)
+        {
+        }
     }
 
     private sealed record EncodingDetection(Encoding Encoding, int PreambleLength);
