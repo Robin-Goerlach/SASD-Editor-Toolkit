@@ -1,3 +1,4 @@
+using System.Text;
 using System.Windows.Forms;
 using Sasd.EditorToolkit.Documents;
 using Sasd.EditorToolkit.Storage;
@@ -114,8 +115,23 @@ public sealed class MainForm : Form
             return;
         }
 
-        var result = await _storage.LoadFileAsync(dialog.FileName);
-        BindDocument(result.Document);
+        try
+        {
+            var result = await _storage.LoadFileAsync(dialog.FileName);
+            BindDocument(result.Document);
+        }
+        catch (IOException ex)
+        {
+            ShowOpenError(ex);
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            ShowOpenError(ex);
+        }
+        catch (DecoderFallbackException ex)
+        {
+            ShowOpenError(ex);
+        }
     }
 
     private async Task<bool> SaveDocumentAsync(bool saveAs)
@@ -137,9 +153,22 @@ public sealed class MainForm : Form
             path = dialog.FileName;
         }
 
-        await _storage.SaveFileAsync(_editor.Document, path);
-        UpdateStatus();
-        return true;
+        try
+        {
+            await _storage.SaveFileAsync(_editor.Document, path);
+            UpdateStatus();
+            return true;
+        }
+        catch (IOException ex)
+        {
+            ShowSaveError(ex);
+            return false;
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            ShowSaveError(ex);
+            return false;
+        }
     }
 
     private void BindDocument(TextDocument document)
@@ -182,20 +211,17 @@ public sealed class MainForm : Form
             return true;
         }
 
-        try
-        {
-            return SaveDocumentAsync(saveAs: false).GetAwaiter().GetResult();
-        }
-        catch (IOException ex)
-        {
-            ShowSaveError(ex);
-            return false;
-        }
-        catch (UnauthorizedAccessException ex)
-        {
-            ShowSaveError(ex);
-            return false;
-        }
+        return SaveDocumentAsync(saveAs: false).GetAwaiter().GetResult();
+    }
+
+    private void ShowOpenError(Exception exception)
+    {
+        MessageBox.Show(
+            this,
+            exception.Message,
+            "Open failed",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Error);
     }
 
     private void ShowSaveError(Exception exception)
