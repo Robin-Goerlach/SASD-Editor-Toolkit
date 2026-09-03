@@ -127,6 +127,25 @@ public sealed class EditorCommandDispatcherTests
     }
 
     [Fact]
+    public async Task Execute_async_moves_caret_to_line_start_and_end()
+    {
+        var document = new TextDocument(new LineTextBuffer("Hello\nWorld"));
+        var viewState = new EditorViewState { CaretPosition = new TextPosition(1, 2) };
+        var dispatcher = CreateM1Dispatcher();
+
+        var start = await dispatcher.ExecuteAsync(
+            EditorCommandIds.MoveCaretLineStart,
+            new EditorCommandContext(document, viewState));
+        var end = await dispatcher.ExecuteAsync(
+            EditorCommandIds.MoveCaretLineEnd,
+            new EditorCommandContext(document, viewState));
+
+        Assert.True(start.Handled);
+        Assert.True(end.Handled);
+        Assert.Equal(new TextPosition(1, 5), viewState.CaretPosition);
+    }
+
+    [Fact]
     public async Task Execute_async_returns_not_handled_for_unknown_command()
     {
         var document = new TextDocument(new LineTextBuffer("Hello"));
