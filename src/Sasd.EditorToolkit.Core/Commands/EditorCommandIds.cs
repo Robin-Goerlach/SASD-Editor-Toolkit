@@ -33,6 +33,9 @@ public static class EditorCommandIds
     /// <summary>Move the caret to the end of the current logical line.</summary>
     public static readonly EditorCommandId MoveCaretLineEnd = new("Navigate.LineEnd");
 
+    /// <summary>Find text in the current document.</summary>
+    public static readonly EditorCommandId FindText = new("Search.Find");
+
     /// <summary>Undo the last edit.</summary>
     public static readonly EditorCommandId Undo = new("Edit.Undo");
 
