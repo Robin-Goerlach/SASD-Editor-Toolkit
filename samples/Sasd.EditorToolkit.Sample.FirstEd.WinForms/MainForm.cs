@@ -2,6 +2,7 @@ using System.Text;
 using System.Windows.Forms;
 using Sasd.EditorToolkit.Commands;
 using Sasd.EditorToolkit.Documents;
+using Sasd.EditorToolkit.Search;
 using Sasd.EditorToolkit.Storage;
 using Sasd.EditorToolkit.Text;
 using Sasd.EditorToolkit.WinForms;
@@ -15,6 +16,7 @@ public sealed class MainForm : Form
     private readonly ToolStripStatusLabel _status = new();
     private readonly FileDocumentStorage _storage = new();
     private TextDocument? _currentDocument;
+    private string _lastSearchText = string.Empty;
 
     public MainForm()
     {
@@ -66,7 +68,7 @@ public sealed class MainForm : Form
 
         menu.Items.Add(file);
         menu.Items.Add(edit);
-        menu.Items.Add(new ToolStripMenuItem("Search"));
+        menu.Items.Add(BuildSearchMenu());
         menu.Items.Add(new ToolStripMenuItem("View"));
         menu.Items.Add(new ToolStripMenuItem("Tools"));
         menu.Items.Add(new ToolStripMenuItem("Help"));
@@ -82,7 +84,18 @@ public sealed class MainForm : Form
         toolbar.Items.Add(new ToolStripSeparator());
         toolbar.Items.Add("Undo", null, async (_, _) => await ExecuteEditorCommandAsync(EditorCommandIds.Undo));
         toolbar.Items.Add("Redo", null, async (_, _) => await ExecuteEditorCommandAsync(EditorCommandIds.Redo));
+        toolbar.Items.Add(new ToolStripSeparator());
+        toolbar.Items.Add("Find", null, async (_, _) => await FindTextAsync(prompt: true));
+        toolbar.Items.Add("Find Next", null, async (_, _) => await FindTextAsync(prompt: false));
         return toolbar;
+    }
+
+    private ToolStripMenuItem BuildSearchMenu()
+    {
+        var search = new ToolStripMenuItem("Search");
+        search.DropDownItems.Add("Find...", null, async (_, _) => await FindTextAsync(prompt: true));
+        search.DropDownItems.Add("Find Next", null, async (_, _) => await FindTextAsync(prompt: false));
+        return search;
     }
 
     private void NewDocument()
@@ -173,10 +186,33 @@ public sealed class MainForm : Form
         }
     }
 
+    private async Task FindTextAsync(bool prompt)
+    {
+        if (_editor.Document is null)
+        {
+            return;
+        }
+
+        var searchText = _lastSearchText;
+        if (prompt || string.IsNullOrEmpty(searchText))
+        {
+            var promptedText = PromptForSearchText(searchText);
+            if (promptedText is null)
+            {
+                return;
+            }
+
+            searchText = promptedText;
+            _lastSearchText = searchText;
+        }
+
+        await ExecuteEditorCommandAsync(EditorCommandIds.FindText, new SearchRequest(searchText));
+    }
+
     private async Task ExecuteEditorCommandAsync(EditorCommandId commandId, object? parameter = null)
     {
         var result = await _editor.ExecuteCommandAsync(commandId, parameter);
-        if (!result.Handled && !string.IsNullOrWhiteSpace(result.Message))
+        if (!string.IsNullOrWhiteSpace(result.Message))
         {
             _status.Text = result.Message;
             return;
@@ -226,6 +262,36 @@ public sealed class MainForm : Form
         }
 
         return SaveDocumentAsync(saveAs: false).GetAwaiter().GetResult();
+    }
+
+    private string? PromptForSearchText(string initialText)
+    {
+        using var dialog = new Form
+        {
+            Text = "Find",
+            Width = 400,
+            Height = 145,
+            StartPosition = FormStartPosition.CenterParent,
+            FormBorderStyle = FormBorderStyle.FixedDialog,
+            MinimizeBox = false,
+            MaximizeBox = false
+        };
+
+        var label = new Label { Text = "Find text:", AutoSize = true, Left = 12, Top = 15 };
+        var textBox = new TextBox { Left = 12, Top = 38, Width = 360, Text = initialText };
+        var findButton = new Button { Text = "Find", DialogResult = DialogResult.OK, Left = 216, Top = 72, Width = 75 };
+        var cancelButton = new Button { Text = "Cancel", DialogResult = DialogResult.Cancel, Left = 297, Top = 72, Width = 75 };
+
+        dialog.Controls.AddRange(new Control[] { label, textBox, findButton, cancelButton });
+        dialog.AcceptButton = findButton;
+        dialog.CancelButton = cancelButton;
+        dialog.Shown += (_, _) =>
+        {
+            textBox.Focus();
+            textBox.SelectAll();
+        };
+
+        return dialog.ShowDialog(this) == DialogResult.OK ? textBox.Text : null;
     }
 
     private void ShowOpenError(Exception exception)
