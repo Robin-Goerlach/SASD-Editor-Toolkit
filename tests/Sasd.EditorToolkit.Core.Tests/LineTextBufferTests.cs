@@ -1,4 +1,5 @@
 using Sasd.EditorToolkit.Text;
+using Xunit;
 
 namespace Sasd.EditorToolkit.Core.Tests;
 
