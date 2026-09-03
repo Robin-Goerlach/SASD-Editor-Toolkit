@@ -79,6 +79,36 @@ public sealed class FileDocumentStorageTests
         Assert.Equal("Hello", Encoding.UTF8.GetString(output));
     }
 
+    [Fact]
+    public async Task Save_file_async_overwrites_existing_file_and_updates_metadata()
+    {
+        var storage = new FileDocumentStorage();
+        var path = Path.Combine(Path.GetTempPath(), $"sasd-editor-toolkit-{Guid.NewGuid():N}.txt");
+        var document = new TextDocument(new LineTextBuffer("new content"));
+
+        try
+        {
+            await File.WriteAllTextAsync(path, "old content", Encoding.UTF8);
+
+            await storage.SaveFileAsync(
+                document,
+                path,
+                new DocumentSaveOptions(AtomicFileReplace: true, WriteEncodingPreamble: false));
+
+            Assert.Equal("new content", await File.ReadAllTextAsync(path, Encoding.UTF8));
+            Assert.Equal(path, document.Metadata.FilePath);
+            Assert.Equal(Path.GetFileName(path), document.Metadata.DisplayName);
+            Assert.False(document.IsDirty);
+        }
+        finally
+        {
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+        }
+    }
+
     private static byte[] Combine(byte[] first, byte[] second)
     {
         var result = new byte[first.Length + second.Length];
