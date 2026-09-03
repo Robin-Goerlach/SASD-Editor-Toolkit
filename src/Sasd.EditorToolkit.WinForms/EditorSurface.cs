@@ -70,6 +70,28 @@ public sealed class EditorSurface : Control
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public EditorViewState ViewState { get; } = new();
 
+    /// <summary>Executes a command against the currently bound document and view state.</summary>
+    public async ValueTask<CommandResult> ExecuteCommandAsync(
+        EditorCommandId commandId,
+        object? parameter = null,
+        CancellationToken cancellationToken = default)
+    {
+        if (Document is null)
+        {
+            return CommandResult.NotHandled("No document is bound to the editor surface.");
+        }
+
+        var context = new EditorCommandContext(Document, ViewState, parameter);
+        var result = await CommandDispatcher.ExecuteAsync(commandId, context, cancellationToken).ConfigureAwait(false);
+        if (result.Handled)
+        {
+            MoveCaret(Document.Buffer.Normalize(ViewState.CaretPosition));
+            Invalidate();
+        }
+
+        return result;
+    }
+
     /// <inheritdoc />
     protected override bool IsInputKey(Keys keyData) => true;
 
@@ -191,21 +213,7 @@ public sealed class EditorSurface : Control
 
     private bool ExecuteEditorCommand(EditorCommandId commandId, object? parameter = null)
     {
-        if (Document is null)
-        {
-            return false;
-        }
-
-        var context = new EditorCommandContext(Document, ViewState, parameter);
-        var result = CommandDispatcher.ExecuteAsync(commandId, context).GetAwaiter().GetResult();
-        if (!result.Handled)
-        {
-            return false;
-        }
-
-        MoveCaret(Document.Buffer.Normalize(ViewState.CaretPosition));
-        Invalidate();
-        return true;
+        return ExecuteCommandAsync(commandId, parameter).GetAwaiter().GetResult().Handled;
     }
 
     private void DrawCaret(Graphics graphics, int gutterWidth, int lineHeight, int firstLine)
