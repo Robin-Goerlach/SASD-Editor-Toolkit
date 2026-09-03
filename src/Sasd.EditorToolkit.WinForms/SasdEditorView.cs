@@ -48,6 +48,15 @@ public sealed class SasdEditorView : UserControl
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public EditorViewState ViewState => _surface.ViewState;
 
+    /// <summary>Executes a command against the currently bound document and view state.</summary>
+    public ValueTask<CommandResult> ExecuteCommandAsync(
+        EditorCommandId commandId,
+        object? parameter = null,
+        CancellationToken cancellationToken = default)
+    {
+        return _surface.ExecuteCommandAsync(commandId, parameter, cancellationToken);
+    }
+
     /// <summary>Refreshes the editor surface.</summary>
     public override void Refresh()
     {
