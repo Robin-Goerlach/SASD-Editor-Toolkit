@@ -20,6 +20,9 @@ public sealed class EditorSurface : Control
         TabStop = true;
     }
 
+    /// <summary>Raised after caret or view-state changes initiated by the surface.</summary>
+    public event EventHandler? ViewStateChanged;
+
     /// <summary>Gets or sets the bound document.</summary>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -38,7 +41,7 @@ public sealed class EditorSurface : Control
             if (_document is not null)
             {
                 _document.Buffer.Changed += BufferChanged;
-                ViewState.MoveCaret(_document.Buffer.Normalize(ViewState.CaretPosition));
+                MoveCaret(_document.Buffer.Normalize(ViewState.CaretPosition));
             }
 
             Invalidate();
@@ -101,7 +104,7 @@ public sealed class EditorSurface : Control
         }
 
         Document.Insert(ViewState.CaretPosition, e.KeyChar.ToString());
-        ViewState.MoveCaret(new TextPosition(ViewState.CaretPosition.Line, ViewState.CaretPosition.Column + 1));
+        MoveCaret(new TextPosition(ViewState.CaretPosition.Line, ViewState.CaretPosition.Column + 1));
         e.Handled = true;
         Invalidate();
     }
@@ -121,23 +124,23 @@ public sealed class EditorSurface : Control
         if (e.KeyCode == Keys.Left)
         {
             var offset = Math.Max(0, buffer.GetOffset(caret) - 1);
-            ViewState.MoveCaret(buffer.GetPosition(offset));
+            MoveCaret(buffer.GetPosition(offset));
             e.Handled = true;
         }
         else if (e.KeyCode == Keys.Right)
         {
             var offset = Math.Min(buffer.Length, buffer.GetOffset(caret) + 1);
-            ViewState.MoveCaret(buffer.GetPosition(offset));
+            MoveCaret(buffer.GetPosition(offset));
             e.Handled = true;
         }
         else if (e.KeyCode == Keys.Up)
         {
-            ViewState.MoveCaret(buffer.Normalize(new TextPosition(caret.Line - 1, caret.Column)));
+            MoveCaret(buffer.Normalize(new TextPosition(caret.Line - 1, caret.Column)));
             e.Handled = true;
         }
         else if (e.KeyCode == Keys.Down)
         {
-            ViewState.MoveCaret(buffer.Normalize(new TextPosition(caret.Line + 1, caret.Column)));
+            MoveCaret(buffer.Normalize(new TextPosition(caret.Line + 1, caret.Column)));
             e.Handled = true;
         }
         else if (e.KeyCode == Keys.Back && buffer.GetOffset(caret) > 0)
@@ -145,13 +148,13 @@ public sealed class EditorSurface : Control
             var offset = buffer.GetOffset(caret);
             var newPosition = buffer.GetPosition(offset - 1);
             Document.Delete(new TextRange(newPosition, caret));
-            ViewState.MoveCaret(newPosition);
+            MoveCaret(newPosition);
             e.Handled = true;
         }
         else if (e.KeyCode == Keys.Enter)
         {
             Document.Insert(caret, Environment.NewLine);
-            ViewState.MoveCaret(new TextPosition(caret.Line + 1, 0));
+            MoveCaret(new TextPosition(caret.Line + 1, 0));
             e.Handled = true;
         }
 
@@ -175,6 +178,12 @@ public sealed class EditorSurface : Control
         var x = gutterWidth + 8 + TextRenderer.MeasureText(graphics, new string(' ', Math.Max(0, ViewState.CaretPosition.Column)), Font, Size.Empty, TextFormatFlags.NoPadding).Width;
         var y = (ViewState.CaretPosition.Line - firstLine) * lineHeight + 2;
         graphics.DrawLine(Pens.Black, x, y, x, y + lineHeight - 4);
+    }
+
+    private void MoveCaret(TextPosition position)
+    {
+        ViewState.MoveCaret(position);
+        ViewStateChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void BufferChanged(object? sender, TextBufferChangedEventArgs e) => Invalidate();
