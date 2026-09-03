@@ -1,0 +1,2 @@
+# SASD-Editor-Toolkit
+Modern C#/.NET editor toolkit inspired by the Turbo Editor Toolbox idea: UI-independent text core, WinForms first, commands, files, undo/redo, search, tests, and a practical path toward future Java, C++ and web adapters.
