@@ -8,6 +8,8 @@ namespace Sasd.EditorToolkit.Documents;
 /// </summary>
 public sealed class TextDocument
 {
+    private string _savedTextSnapshot;
+
     /// <summary>Creates a new document around the supplied buffer.</summary>
     public TextDocument(ITextBuffer? buffer = null, DocumentMetadata? metadata = null)
     {
@@ -15,6 +17,7 @@ public sealed class TextDocument
         Buffer = buffer ?? new LineTextBuffer();
         Metadata = metadata ?? new DocumentMetadata();
         SavedVersion = Buffer.Version;
+        _savedTextSnapshot = Buffer.GetText();
     }
 
     /// <summary>Gets the stable document id.</summary>
@@ -29,14 +32,18 @@ public sealed class TextDocument
     /// <summary>Gets the document-level undo manager.</summary>
     public UndoManager UndoManager { get; } = new();
 
-    /// <summary>Gets the buffer version that is considered saved.</summary>
+    /// <summary>Gets the buffer version that was current when the document was last marked as saved.</summary>
     public long SavedVersion { get; private set; }
 
-    /// <summary>Gets whether current content differs from the last saved version.</summary>
-    public bool IsDirty => Buffer.Version != SavedVersion;
+    /// <summary>Gets whether current content differs from the last saved content snapshot.</summary>
+    public bool IsDirty => !string.Equals(Buffer.GetText(), _savedTextSnapshot, StringComparison.Ordinal);
 
-    /// <summary>Marks the current buffer version as saved.</summary>
-    public void MarkSaved() => SavedVersion = Buffer.Version;
+    /// <summary>Marks the current buffer content and version as saved.</summary>
+    public void MarkSaved()
+    {
+        SavedVersion = Buffer.Version;
+        _savedTextSnapshot = Buffer.GetText();
+    }
 
     /// <summary>Inserts text and records undo information.</summary>
     public TextChangeSet Insert(TextPosition position, string text)
