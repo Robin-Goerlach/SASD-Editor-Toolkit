@@ -1,5 +1,6 @@
 using System.Text;
 using System.Windows.Forms;
+using Sasd.EditorToolkit.Commands;
 using Sasd.EditorToolkit.Documents;
 using Sasd.EditorToolkit.Storage;
 using Sasd.EditorToolkit.Text;
@@ -60,8 +61,8 @@ public sealed class MainForm : Form
         file.DropDownItems.Add("Exit", null, (_, _) => Close());
 
         var edit = new ToolStripMenuItem("Edit");
-        edit.DropDownItems.Add("Undo", null, (_, _) => { _editor.Document?.Undo(); _editor.Refresh(); UpdateStatus(); });
-        edit.DropDownItems.Add("Redo", null, (_, _) => { _editor.Document?.Redo(); _editor.Refresh(); UpdateStatus(); });
+        edit.DropDownItems.Add("Undo", null, async (_, _) => await ExecuteEditorCommandAsync(EditorCommandIds.Undo));
+        edit.DropDownItems.Add("Redo", null, async (_, _) => await ExecuteEditorCommandAsync(EditorCommandIds.Redo));
 
         menu.Items.Add(file);
         menu.Items.Add(edit);
@@ -79,8 +80,8 @@ public sealed class MainForm : Form
         toolbar.Items.Add("Open", null, async (_, _) => await OpenDocumentAsync());
         toolbar.Items.Add("Save", null, async (_, _) => await SaveDocumentAsync(false));
         toolbar.Items.Add(new ToolStripSeparator());
-        toolbar.Items.Add("Undo", null, (_, _) => { _editor.Document?.Undo(); _editor.Refresh(); UpdateStatus(); });
-        toolbar.Items.Add("Redo", null, (_, _) => { _editor.Document?.Redo(); _editor.Refresh(); UpdateStatus(); });
+        toolbar.Items.Add("Undo", null, async (_, _) => await ExecuteEditorCommandAsync(EditorCommandIds.Undo));
+        toolbar.Items.Add("Redo", null, async (_, _) => await ExecuteEditorCommandAsync(EditorCommandIds.Redo));
         return toolbar;
     }
 
@@ -170,6 +171,18 @@ public sealed class MainForm : Form
             ShowSaveError(ex);
             return false;
         }
+    }
+
+    private async Task ExecuteEditorCommandAsync(EditorCommandId commandId, object? parameter = null)
+    {
+        var result = await _editor.ExecuteCommandAsync(commandId, parameter);
+        if (!result.Handled && !string.IsNullOrWhiteSpace(result.Message))
+        {
+            _status.Text = result.Message;
+            return;
+        }
+
+        UpdateStatus();
     }
 
     private void BindDocument(TextDocument document)

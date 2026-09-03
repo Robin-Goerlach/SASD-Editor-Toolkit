@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using Sasd.EditorToolkit.Commands;
 using Sasd.EditorToolkit.Documents;
 using Sasd.EditorToolkit.Editing;
 using Sasd.EditorToolkit.Text;
@@ -10,11 +11,18 @@ namespace Sasd.EditorToolkit.WinForms;
 /// <summary>Minimal custom text rendering surface for the WinForms adapter.</summary>
 public sealed class EditorSurface : Control
 {
+    private readonly EditorCommandDispatcher _defaultCommandDispatcher;
+    private EditorCommandDispatcher _commandDispatcher;
     private TextDocument? _document;
 
     /// <summary>Creates a surface.</summary>
     public EditorSurface()
     {
+        var registry = new EditorCommandRegistry();
+        registry.RegisterM1Defaults();
+        _defaultCommandDispatcher = new EditorCommandDispatcher(registry);
+        _commandDispatcher = _defaultCommandDispatcher;
+
         SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.UserPaint, true);
         Font = new Font(FontFamily.GenericMonospace, 10.0f);
         TabStop = true;
@@ -22,6 +30,15 @@ public sealed class EditorSurface : Control
 
     /// <summary>Raised after caret or view-state changes initiated by the surface.</summary>
     public event EventHandler? ViewStateChanged;
+
+    /// <summary>Gets or sets the dispatcher used for keyboard-driven editor commands.</summary>
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public EditorCommandDispatcher CommandDispatcher
+    {
+        get => _commandDispatcher;
+        set => _commandDispatcher = value ?? _defaultCommandDispatcher;
+    }
 
     /// <summary>Gets or sets the bound document.</summary>
     [Browsable(false)]
@@ -52,6 +69,28 @@ public sealed class EditorSurface : Control
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public EditorViewState ViewState { get; } = new();
+
+    /// <summary>Executes a command against the currently bound document and view state.</summary>
+    public async ValueTask<CommandResult> ExecuteCommandAsync(
+        EditorCommandId commandId,
+        object? parameter = null,
+        CancellationToken cancellationToken = default)
+    {
+        if (Document is null)
+        {
+            return CommandResult.NotHandled("No document is bound to the editor surface.");
+        }
+
+        var context = new EditorCommandContext(Document, ViewState, parameter);
+        var result = await CommandDispatcher.ExecuteAsync(commandId, context, cancellationToken);
+        if (result.Handled)
+        {
+            MoveCaret(Document.Buffer.Normalize(ViewState.CaretPosition));
+            Invalidate();
+        }
+
+        return result;
+    }
 
     /// <inheritdoc />
     protected override bool IsInputKey(Keys keyData) => true;
@@ -103,10 +142,10 @@ public sealed class EditorSurface : Control
             return;
         }
 
-        Document.Insert(ViewState.CaretPosition, e.KeyChar.ToString());
-        MoveCaret(new TextPosition(ViewState.CaretPosition.Line, ViewState.CaretPosition.Column + 1));
-        e.Handled = true;
-        Invalidate();
+        if (ExecuteEditorCommand(EditorCommandIds.InsertText, e.KeyChar.ToString()))
+        {
+            e.Handled = true;
+        }
     }
 
     /// <inheritdoc />
@@ -118,47 +157,14 @@ public sealed class EditorSurface : Control
             return;
         }
 
-        var buffer = Document.Buffer;
-        var caret = buffer.Normalize(ViewState.CaretPosition);
-
-        if (e.KeyCode == Keys.Left)
+        if (!TryGetKeyCommand(e, out var commandId))
         {
-            var offset = Math.Max(0, buffer.GetOffset(caret) - 1);
-            MoveCaret(buffer.GetPosition(offset));
-            e.Handled = true;
-        }
-        else if (e.KeyCode == Keys.Right)
-        {
-            var offset = Math.Min(buffer.Length, buffer.GetOffset(caret) + 1);
-            MoveCaret(buffer.GetPosition(offset));
-            e.Handled = true;
-        }
-        else if (e.KeyCode == Keys.Up)
-        {
-            MoveCaret(buffer.Normalize(new TextPosition(caret.Line - 1, caret.Column)));
-            e.Handled = true;
-        }
-        else if (e.KeyCode == Keys.Down)
-        {
-            MoveCaret(buffer.Normalize(new TextPosition(caret.Line + 1, caret.Column)));
-            e.Handled = true;
-        }
-        else if (e.KeyCode == Keys.Back && buffer.GetOffset(caret) > 0)
-        {
-            var offset = buffer.GetOffset(caret);
-            var newPosition = buffer.GetPosition(offset - 1);
-            Document.Delete(new TextRange(newPosition, caret));
-            MoveCaret(newPosition);
-            e.Handled = true;
-        }
-        else if (e.KeyCode == Keys.Enter)
-        {
-            Document.Insert(caret, Environment.NewLine);
-            MoveCaret(new TextPosition(caret.Line + 1, 0));
-            e.Handled = true;
+            return;
         }
 
-        Invalidate();
+        ExecuteEditorCommand(commandId);
+        e.Handled = true;
+        e.SuppressKeyPress = true;
     }
 
     /// <inheritdoc />
@@ -166,6 +172,48 @@ public sealed class EditorSurface : Control
     {
         base.OnMouseDown(e);
         Focus();
+    }
+
+    private static bool TryGetKeyCommand(KeyEventArgs e, out EditorCommandId commandId)
+    {
+        if (e.Modifiers == Keys.Control && e.KeyCode == Keys.Z)
+        {
+            commandId = EditorCommandIds.Undo;
+            return true;
+        }
+
+        if (e.Modifiers == Keys.Control && e.KeyCode == Keys.Y)
+        {
+            commandId = EditorCommandIds.Redo;
+            return true;
+        }
+
+        if (e.Modifiers != Keys.None)
+        {
+            commandId = default;
+            return false;
+        }
+
+        commandId = e.KeyCode switch
+        {
+            Keys.Left => EditorCommandIds.MoveCaretLeft,
+            Keys.Right => EditorCommandIds.MoveCaretRight,
+            Keys.Up => EditorCommandIds.MoveCaretUp,
+            Keys.Down => EditorCommandIds.MoveCaretDown,
+            Keys.Home => EditorCommandIds.MoveCaretLineStart,
+            Keys.End => EditorCommandIds.MoveCaretLineEnd,
+            Keys.Back => EditorCommandIds.DeleteLeft,
+            Keys.Delete => EditorCommandIds.DeleteRight,
+            Keys.Enter => EditorCommandIds.NewLine,
+            _ => default
+        };
+
+        return !commandId.Equals(default(EditorCommandId));
+    }
+
+    private bool ExecuteEditorCommand(EditorCommandId commandId, object? parameter = null)
+    {
+        return ExecuteCommandAsync(commandId, parameter).GetAwaiter().GetResult().Handled;
     }
 
     private void DrawCaret(Graphics graphics, int gutterWidth, int lineHeight, int firstLine)

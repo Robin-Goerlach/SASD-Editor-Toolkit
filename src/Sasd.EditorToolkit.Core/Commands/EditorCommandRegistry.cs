@@ -22,6 +22,12 @@ public sealed class EditorCommandRegistry
         Register(new NewLineCommand());
         Register(new DeleteLeftCommand());
         Register(new DeleteRightCommand());
+        Register(new MoveCaretLeftCommand());
+        Register(new MoveCaretRightCommand());
+        Register(new MoveCaretUpCommand());
+        Register(new MoveCaretDownCommand());
+        Register(new MoveCaretLineStartCommand());
+        Register(new MoveCaretLineEndCommand());
         Register(new UndoCommand());
         Register(new RedoCommand());
     }

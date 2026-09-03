@@ -74,6 +74,78 @@ public sealed class EditorCommandDispatcherTests
     }
 
     [Fact]
+    public async Task Execute_async_moves_caret_left_and_right()
+    {
+        var document = new TextDocument(new LineTextBuffer("Hello"));
+        var viewState = new EditorViewState { CaretPosition = new TextPosition(0, 3) };
+        var dispatcher = CreateM1Dispatcher();
+
+        var left = await dispatcher.ExecuteAsync(
+            EditorCommandIds.MoveCaretLeft,
+            new EditorCommandContext(document, viewState));
+        var right = await dispatcher.ExecuteAsync(
+            EditorCommandIds.MoveCaretRight,
+            new EditorCommandContext(document, viewState));
+
+        Assert.True(left.Handled);
+        Assert.True(right.Handled);
+        Assert.Equal(new TextPosition(0, 3), viewState.CaretPosition);
+    }
+
+    [Fact]
+    public async Task Execute_async_moves_caret_across_line_boundary()
+    {
+        var document = new TextDocument(new LineTextBuffer("Hello\nWorld"));
+        var viewState = new EditorViewState { CaretPosition = new TextPosition(1, 0) };
+        var dispatcher = CreateM1Dispatcher();
+
+        var result = await dispatcher.ExecuteAsync(
+            EditorCommandIds.MoveCaretLeft,
+            new EditorCommandContext(document, viewState));
+
+        Assert.True(result.Handled);
+        Assert.Equal(new TextPosition(0, 5), viewState.CaretPosition);
+    }
+
+    [Fact]
+    public async Task Execute_async_moves_caret_up_and_down()
+    {
+        var document = new TextDocument(new LineTextBuffer("abc\ndefgh"));
+        var viewState = new EditorViewState { CaretPosition = new TextPosition(1, 4) };
+        var dispatcher = CreateM1Dispatcher();
+
+        var up = await dispatcher.ExecuteAsync(
+            EditorCommandIds.MoveCaretUp,
+            new EditorCommandContext(document, viewState));
+        var down = await dispatcher.ExecuteAsync(
+            EditorCommandIds.MoveCaretDown,
+            new EditorCommandContext(document, viewState));
+
+        Assert.True(up.Handled);
+        Assert.True(down.Handled);
+        Assert.Equal(new TextPosition(1, 3), viewState.CaretPosition);
+    }
+
+    [Fact]
+    public async Task Execute_async_moves_caret_to_line_start_and_end()
+    {
+        var document = new TextDocument(new LineTextBuffer("Hello\nWorld"));
+        var viewState = new EditorViewState { CaretPosition = new TextPosition(1, 2) };
+        var dispatcher = CreateM1Dispatcher();
+
+        var start = await dispatcher.ExecuteAsync(
+            EditorCommandIds.MoveCaretLineStart,
+            new EditorCommandContext(document, viewState));
+        var end = await dispatcher.ExecuteAsync(
+            EditorCommandIds.MoveCaretLineEnd,
+            new EditorCommandContext(document, viewState));
+
+        Assert.True(start.Handled);
+        Assert.True(end.Handled);
+        Assert.Equal(new TextPosition(1, 5), viewState.CaretPosition);
+    }
+
+    [Fact]
     public async Task Execute_async_returns_not_handled_for_unknown_command()
     {
         var document = new TextDocument(new LineTextBuffer("Hello"));

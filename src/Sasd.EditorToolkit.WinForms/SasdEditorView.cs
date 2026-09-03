@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using Sasd.EditorToolkit.Commands;
 using Sasd.EditorToolkit.Documents;
 using Sasd.EditorToolkit.Editing;
 
@@ -24,6 +25,15 @@ public sealed class SasdEditorView : UserControl
     /// <summary>Raised when the underlying surface changes caret or view state.</summary>
     public event EventHandler? ViewStateChanged;
 
+    /// <summary>Gets or sets the dispatcher used for keyboard-driven editor commands.</summary>
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public EditorCommandDispatcher CommandDispatcher
+    {
+        get => _surface.CommandDispatcher;
+        set => _surface.CommandDispatcher = value;
+    }
+
     /// <summary>Gets or sets the bound document.</summary>
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -37,6 +47,15 @@ public sealed class SasdEditorView : UserControl
     [Browsable(false)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public EditorViewState ViewState => _surface.ViewState;
+
+    /// <summary>Executes a command against the currently bound document and view state.</summary>
+    public ValueTask<CommandResult> ExecuteCommandAsync(
+        EditorCommandId commandId,
+        object? parameter = null,
+        CancellationToken cancellationToken = default)
+    {
+        return _surface.ExecuteCommandAsync(commandId, parameter, cancellationToken);
+    }
 
     /// <summary>Refreshes the editor surface.</summary>
     public override void Refresh()
