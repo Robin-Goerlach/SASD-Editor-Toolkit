@@ -16,16 +16,16 @@ public static class EditorCommandIds
     public static readonly EditorCommandId DeleteRight = new("Edit.DeleteRight");
 
     /// <summary>Move the caret one text position to the left.</summary>
-    public static readonly EditorCommandId MoveCaretLeft = new("Navigate.MoveCaretLeft");
+    public static readonly EditorCommandId MoveCaretLeft = new("Navigate.Left");
 
     /// <summary>Move the caret one text position to the right.</summary>
-    public static readonly EditorCommandId MoveCaretRight = new("Navigate.MoveCaretRight");
+    public static readonly EditorCommandId MoveCaretRight = new("Navigate.Right");
 
     /// <summary>Move the caret one logical line up.</summary>
-    public static readonly EditorCommandId MoveCaretUp = new("Navigate.MoveCaretUp");
+    public static readonly EditorCommandId MoveCaretUp = new("Navigate.Up");
 
     /// <summary>Move the caret one logical line down.</summary>
-    public static readonly EditorCommandId MoveCaretDown = new("Navigate.MoveCaretDown");
+    public static readonly EditorCommandId MoveCaretDown = new("Navigate.Down");
 
     /// <summary>Undo the last edit.</summary>
     public static readonly EditorCommandId Undo = new("Edit.Undo");
