@@ -21,6 +21,7 @@ public sealed class EditorCommandRegistry
         Register(new InsertTextCommand());
         Register(new NewLineCommand());
         Register(new DeleteLeftCommand());
+        Register(new DeleteRightCommand());
         Register(new UndoCommand());
         Register(new RedoCommand());
     }
