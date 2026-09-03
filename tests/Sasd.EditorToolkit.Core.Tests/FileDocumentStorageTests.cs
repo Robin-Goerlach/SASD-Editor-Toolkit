@@ -33,9 +33,9 @@ public sealed class FileDocumentStorageTests
         var output = destination.ToArray();
 
         Assert.True(output.Length >= 3);
-        Assert.Equal(0xEF, output[0]);
-        Assert.Equal(0xBB, output[1]);
-        Assert.Equal(0xBF, output[2]);
+        Assert.Equal((byte)0xEF, output[0]);
+        Assert.Equal((byte)0xBB, output[1]);
+        Assert.Equal((byte)0xBF, output[2]);
         Assert.Equal("Hello", Encoding.UTF8.GetString(output, 3, output.Length - 3));
     }
 
