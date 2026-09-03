@@ -27,6 +27,12 @@ public static class EditorCommandIds
     /// <summary>Move the caret one logical line down.</summary>
     public static readonly EditorCommandId MoveCaretDown = new("Navigate.Down");
 
+    /// <summary>Move the caret to the start of the current logical line.</summary>
+    public static readonly EditorCommandId MoveCaretLineStart = new("Navigate.LineStart");
+
+    /// <summary>Move the caret to the end of the current logical line.</summary>
+    public static readonly EditorCommandId MoveCaretLineEnd = new("Navigate.LineEnd");
+
     /// <summary>Undo the last edit.</summary>
     public static readonly EditorCommandId Undo = new("Edit.Undo");
 
