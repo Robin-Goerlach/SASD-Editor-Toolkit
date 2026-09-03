@@ -20,6 +20,7 @@ public sealed class MainForm : Form
         Text = "SASD Editor Toolkit - Modern FIRST-ED Demo";
         Width = 1200;
         Height = 800;
+        _editor.ViewStateChanged += (_, _) => UpdateStatus();
 
         var menu = BuildMenu();
         var toolbar = BuildToolbar();
