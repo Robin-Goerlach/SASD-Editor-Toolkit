@@ -85,7 +85,7 @@ public sealed class EditorSurface : Control
         var result = await CommandDispatcher.ExecuteAsync(commandId, context, cancellationToken);
         if (result.Handled)
         {
-            MoveCaret(Document.Buffer.Normalize(ViewState.CaretPosition));
+            NormalizeCaretAfterCommand();
             Invalidate();
         }
 
@@ -126,6 +126,7 @@ public sealed class EditorSurface : Control
                 e.Graphics.FillRectangle(currentLineBrush, gutterWidth + 1, y, ClientSize.Width - gutterWidth - 1, lineHeight);
             }
 
+            DrawSelectionBackground(e.Graphics, line, y, gutterWidth, lineHeight);
             TextRenderer.DrawText(e.Graphics, (line + 1).ToString(), Font, new Rectangle(0, y, gutterWidth - 6, lineHeight), SystemColors.GrayText, TextFormatFlags.Right | TextFormatFlags.VerticalCenter);
             TextRenderer.DrawText(e.Graphics, Document.Buffer.GetLineText(line).ToString(), Font, new Point(gutterWidth + 8, y + 1), SystemColors.WindowText, TextFormatFlags.NoPadding);
         }
@@ -216,6 +217,35 @@ public sealed class EditorSurface : Control
         return ExecuteCommandAsync(commandId, parameter).GetAwaiter().GetResult().Handled;
     }
 
+    private void DrawSelectionBackground(Graphics graphics, int line, int y, int gutterWidth, int lineHeight)
+    {
+        if (Document is null || ViewState.Selection.IsEmpty)
+        {
+            return;
+        }
+
+        var range = ViewState.Selection.Range;
+        if (line < range.Start.Line || line > range.End.Line)
+        {
+            return;
+        }
+
+        var lineLength = Document.Buffer.GetLineText(line).Length;
+        var startColumn = line == range.Start.Line ? range.Start.Column : 0;
+        var endColumn = line == range.End.Line ? range.End.Column : lineLength;
+        startColumn = Math.Clamp(startColumn, 0, lineLength);
+        endColumn = Math.Clamp(endColumn, startColumn, lineLength);
+        if (endColumn <= startColumn)
+        {
+            return;
+        }
+
+        var x = gutterWidth + 8 + MeasureTextWidth(graphics, startColumn);
+        var width = Math.Max(2, MeasureTextWidth(graphics, endColumn - startColumn));
+        using var selectionBrush = new SolidBrush(SystemColors.Highlight);
+        graphics.FillRectangle(selectionBrush, x, y, width, lineHeight);
+    }
+
     private void DrawCaret(Graphics graphics, int gutterWidth, int lineHeight, int firstLine)
     {
         if (Document is null || ViewState.CaretPosition.Line < firstLine)
@@ -223,14 +253,36 @@ public sealed class EditorSurface : Control
             return;
         }
 
-        var x = gutterWidth + 8 + TextRenderer.MeasureText(graphics, new string(' ', Math.Max(0, ViewState.CaretPosition.Column)), Font, Size.Empty, TextFormatFlags.NoPadding).Width;
+        var x = gutterWidth + 8 + MeasureTextWidth(graphics, Math.Max(0, ViewState.CaretPosition.Column));
         var y = (ViewState.CaretPosition.Line - firstLine) * lineHeight + 2;
         graphics.DrawLine(Pens.Black, x, y, x, y + lineHeight - 4);
+    }
+
+    private int MeasureTextWidth(Graphics graphics, int columns)
+    {
+        if (columns <= 0)
+        {
+            return 0;
+        }
+
+        return TextRenderer.MeasureText(graphics, new string(' ', columns), Font, Size.Empty, TextFormatFlags.NoPadding).Width;
     }
 
     private void MoveCaret(TextPosition position)
     {
         ViewState.MoveCaret(position);
+        ViewStateChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void NormalizeCaretAfterCommand()
+    {
+        if (Document is null)
+        {
+            return;
+        }
+
+        // Do not call MoveCaret here: commands such as Search.Find intentionally keep a selection.
+        ViewState.CaretPosition = Document.Buffer.Normalize(ViewState.CaretPosition);
         ViewStateChanged?.Invoke(this, EventArgs.Empty);
     }
 
