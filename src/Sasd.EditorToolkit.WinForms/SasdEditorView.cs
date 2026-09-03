@@ -1,5 +1,6 @@
-using System.Windows.Forms;
+using System.ComponentModel;
 using System.Drawing;
+using System.Windows.Forms;
 using Sasd.EditorToolkit.Documents;
 using Sasd.EditorToolkit.Editing;
 
@@ -20,6 +21,8 @@ public sealed class SasdEditorView : UserControl
     }
 
     /// <summary>Gets or sets the bound document.</summary>
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public TextDocument? Document
     {
         get => _surface.Document;
@@ -27,6 +30,8 @@ public sealed class SasdEditorView : UserControl
     }
 
     /// <summary>Gets the view state.</summary>
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public EditorViewState ViewState => _surface.ViewState;
 
     /// <summary>Refreshes the editor surface.</summary>
