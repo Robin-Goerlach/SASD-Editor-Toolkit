@@ -178,6 +178,8 @@ public sealed class EditorSurface : Control
             Keys.Right => EditorCommandIds.MoveCaretRight,
             Keys.Up => EditorCommandIds.MoveCaretUp,
             Keys.Down => EditorCommandIds.MoveCaretDown,
+            Keys.Home => EditorCommandIds.MoveCaretLineStart,
+            Keys.End => EditorCommandIds.MoveCaretLineEnd,
             Keys.Back => EditorCommandIds.DeleteLeft,
             Keys.Delete => EditorCommandIds.DeleteRight,
             Keys.Enter => EditorCommandIds.NewLine,
