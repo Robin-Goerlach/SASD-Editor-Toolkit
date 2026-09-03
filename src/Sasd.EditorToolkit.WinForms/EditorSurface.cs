@@ -82,7 +82,7 @@ public sealed class EditorSurface : Control
         }
 
         var context = new EditorCommandContext(Document, ViewState, parameter);
-        var result = await CommandDispatcher.ExecuteAsync(commandId, context, cancellationToken).ConfigureAwait(false);
+        var result = await CommandDispatcher.ExecuteAsync(commandId, context, cancellationToken);
         if (result.Handled)
         {
             MoveCaret(Document.Buffer.Normalize(ViewState.CaretPosition));
