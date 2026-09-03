@@ -28,4 +28,27 @@ public sealed class LineTextBufferTests
         buffer.Delete(new TextRange(new TextPosition(0, 5), new TextPosition(1, 0)));
         Assert.Equal("HelloWorld", buffer.GetText());
     }
+
+    [Fact]
+    public void Constructor_preserves_mixed_line_endings()
+    {
+        var buffer = new LineTextBuffer("A\r\nB\nC\rD");
+
+        Assert.Equal(4, buffer.LineCount);
+        Assert.Equal(LineEndingKind.CrLf, buffer.GetLineEnding(0));
+        Assert.Equal(LineEndingKind.Lf, buffer.GetLineEnding(1));
+        Assert.Equal(LineEndingKind.Cr, buffer.GetLineEnding(2));
+        Assert.Equal(LineEndingKind.None, buffer.GetLineEnding(3));
+        Assert.Equal("A\r\nB\nC\rD", buffer.GetText());
+    }
+
+    [Fact]
+    public void Replace_replaces_normalized_reversed_range()
+    {
+        var buffer = new LineTextBuffer("Hello");
+
+        buffer.Replace(new TextRange(new TextPosition(0, 4), new TextPosition(0, 1)), "i");
+
+        Assert.Equal("Hio", buffer.GetText());
+    }
 }
