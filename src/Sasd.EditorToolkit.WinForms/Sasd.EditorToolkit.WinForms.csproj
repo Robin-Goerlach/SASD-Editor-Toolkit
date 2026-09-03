@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <IsPackable>true</IsPackable>
+    <PackageId>Sasd.EditorToolkit.WinForms</PackageId>
+    <Description>WinForms adapter for the SASD Editor Toolkit.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sasd.EditorToolkit.Core\Sasd.EditorToolkit.Core.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,26 @@
+# Build output
+bin/
+obj/
+artifacts/
+TestResults/
+coverage/
+
+# User/local files
+*.user
+*.suo
+*.rsuser
+.vs/
+.vscode/*.db
+
+# Packages
+*.nupkg
+*.snupkg
+packages/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Historical sources intentionally not committed
+*.pdf
+!docs/**/*.md
