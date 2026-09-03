@@ -84,7 +84,7 @@ public sealed class EditorCommandDispatcherTests
             new EditorCommandContext(document, new EditorViewState()));
 
         Assert.False(result.Handled);
-        Assert.Contains("Unknown command", result.Message);
+        Assert.Contains("Unknown command", result.Message ?? string.Empty);
     }
 
     private static EditorCommandDispatcher CreateM1Dispatcher()
