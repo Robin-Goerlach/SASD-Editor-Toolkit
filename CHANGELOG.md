@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added a Codex-oriented autonomous development harness: root/subtree AGENTS instructions, execution-plan rules, current-state and next-work documents, bilingual autonomy guidance and platform-aware verification scripts.
+- Formalized M1c search/selection completion in the roadmap and clarified that historical branch stop notes are not a repository-wide freeze.
+
 - Added UI-independent M1c text search service with forward, backward, wrapping and comparison options.
 - Added `Search.Find` command handling that updates selection and caret state through the Core command model.
 - Added simple Find / Find Next support to the Modern FIRST-ED WinForms sample.

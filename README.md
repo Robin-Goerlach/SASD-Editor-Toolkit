@@ -27,15 +27,22 @@ The first milestone is **Modern FIRST-ED 0.1**: a minimal but real editor core, 
 
 ## Current status
 
-This ZIP is a **repository seed**. It contains:
+The repository has moved beyond its original seed. The Core, WinForms adapter and Modern FIRST-ED sample support basic editing, undo/redo, file storage, command-driven keyboard navigation and an initial UI-independent search service. Windows GitHub Actions builds the full solution and runs the Core test suite.
 
-- project structure for Core, WinForms adapter, WinForms sample and Core tests;
-- foundational C# classes for documents, text buffers, positions, ranges, commands, undo, storage and workspace;
-- initial specification documents and ADRs;
-- imported German Lastenheft/Pflichtenheft documents;
-- a roadmap that prevents the full Pflichtenheft from becoming the M1 scope.
+The current development slice is **M1c: search and selection**. See `docs/ai/CURRENT-STATE.md` for the dated baseline and `docs/ai/NEXT-WORK.md` for the autonomous work queue.
 
-Because this seed was generated in an environment without the .NET SDK, it should be treated as carefully prepared source material. Run the build locally before the first commit.
+## Codex / AI-agent development
+
+The repository is prepared for autonomous Codex work.
+
+- `AGENTS.md` is the short mandatory instruction map.
+- `docs/ai/CODEX-AUTONOMY.md` defines autonomy, stop conditions and the development loop.
+- `docs/ai/CURRENT-STATE.md` records a dated repository baseline.
+- `docs/ai/NEXT-WORK.md` is the ordered queue used when the instruction is simply to continue.
+- `PLANS.md` defines execution plans for substantial changes.
+- component-specific `AGENTS.md` files protect Core/WinForms/sample/test boundaries.
+
+Typical continuation prompt: **“Continue autonomously with the first unfinished item in docs/ai/NEXT-WORK.md; follow AGENTS.md, test, document, commit and verify CI.”**
 
 ## Build
 

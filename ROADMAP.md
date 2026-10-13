@@ -81,6 +81,30 @@ Exit criteria:
 - UI logic does not duplicate the document model.
 - The WinForms adapter remains replaceable.
 
+## M1c - Search and selection completion
+
+Goal: complete the first UI-independent find/replace and selection-editing slice before broadening into M2.
+
+Scope:
+
+- existing `Search.Find` behavior remains the baseline;
+- add `Search.Replace` through the Core command model;
+- selection-aware editing (replace/delete selection and caret-collapse rules);
+- improve selected-text rendering in the WinForms adapter;
+- add language-neutral search/replace conformance vectors after behavior stabilizes.
+
+Not in M1c: regular expressions, incremental/fuzzy search UI, large-file search indexing, multi-selection or syntax-aware replace.
+
+Exit criteria:
+
+- find and basic literal replace work headlessly through Core commands;
+- selection-aware editing has deterministic Core tests;
+- the WinForms sample demonstrates behavior without owning search/edit logic;
+- command IDs and portable behavior are documented under `docs/spec/`;
+- full Windows CI is green.
+
+The detailed autonomous sequence is in `docs/ai/NEXT-WORK.md`.
+
 ## M2 - Historical functional breadth
 
 Goal: cover the important editor-toolbox behavior beyond the minimal editor.
