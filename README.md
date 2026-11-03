@@ -30,7 +30,7 @@ The first milestone is **Modern FIRST-ED 0.1**: a minimal but real editor core, 
 - [English documentation](docs/en/README.md): [Roadmap](docs/en/ROADMAP.md), [language strategy](docs/en/Language-Strategy.md) and shared architecture/specifications.
 - [Deutsche Dokumentation](docs/de/README.md): [Roadmap](docs/de/ROADMAP.md), [Lastenheft](docs/de/Lastenheft.md), [Pflichtenheft](docs/de/Pflichtenheft.md) und [Mehrsprachenstrategie](docs/de/Mehrsprachenstrategie.md).
 - [Documentation overview](docs/README.md) maps shared technical and historical material.
-- [Changelog](docs/en/CHANGELOG.md), [contribution guidelines](docs/en/CONTRIBUTING.md), [security policy](docs/en/SECURITY.md) and [execution-plan guidance](docs/en/PLANS.md).
+- [Changelog](docs/en/CHANGELOG.md) / [Änderungsprotokoll](docs/de/CHANGELOG.md), [contribution guidelines](docs/en/CONTRIBUTING.md) / [Mitwirken](docs/de/CONTRIBUTING.md), [security policy](docs/en/SECURITY.md) / [Sicherheit](docs/de/SECURITY.md) and [execution-plan guidance](docs/en/PLANS.md) / [Ausführungspläne](docs/de/PLANS.md).
 
 ## Current status
 

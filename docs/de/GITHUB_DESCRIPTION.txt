@@ -1,0 +1,1 @@
+Modernes C#/.NET-Editor-Toolkit nach dem Baukastenprinzip der Turbo Editor Toolbox: UI-unabhängiger Textkern, zunächst WinForms, Befehle, Dateien, Undo/Redo, Suche, Tests und ein pragmatischer Weg zu späteren Java-, C++- und Webadaptern.

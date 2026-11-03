@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added German counterparts for the changelog, contributing guide, security policy, execution-plan rules and GitHub repository description; expanded the German Codex autonomy guide into a full translation of the English canonical runbook; updated bilingual documentation indexes. The full English requirements translations remain open.
+
+
 - Moved the full repository changelog, contributing/security guidance, execution-plan rules and GitHub description into `docs/en/`; removed the superseded root roadmap pointer and retained GitHub discovery entry points under `.github/`. Updated related documentation references without changing editor behavior.
 
 - Reorganized bilingual documentation navigation and added English/German roadmap locations under `docs/` with an initial root roadmap pointer (subsequently retired). No product behavior changed.

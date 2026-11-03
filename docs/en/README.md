@@ -18,6 +18,9 @@ Full requirements have **not yet been translated into English**:
 
 ## Repository policies and records
 
+These documents also have German translations linked from the [German documentation index](../de/README.md).
+
+
 - [Changelog](CHANGELOG.md) — development history and unreleased changes.
 - [Contributing](CONTRIBUTING.md) — contributor instructions and scope.
 - [Security policy](SECURITY.md) — current reporting instructions and security principles.
@@ -28,7 +31,7 @@ Full requirements have **not yet been translated into English**:
 
 - [Current state](../ai/CURRENT-STATE.md) — dated snapshot, not a live build result.
 - [Next work](../ai/NEXT-WORK.md) — ordered development tasks.
-- [Codex autonomy](../ai/CODEX-AUTONOMY.md) — implementation and validation rules.
+- [Codex autonomy](../ai/CODEX-AUTONOMY.md) — authoritative English runbook; [complete German translation](../de/CODEX-AUTONOMIE.md).
 - [Notes](../notes/) and [research](../research/) — contextual, not current release certification.
 
 Return to the [repository README](../../README.md) or [contributing guide](CONTRIBUTING.md).

@@ -11,23 +11,23 @@
 - [Architekturentscheidungen](../adr/) — Implementierung, Umfang, Repository und Unicode.
 - [Gemeinsame Spezifikationen](../spec/) — Editormodell, Puffer, Befehle, Profile, Einstellungen und Tests.
 
-## Projektunterlagen (zurzeit auf Englisch)
+## Projektunterlagen auf Deutsch
 
-- [Änderungsprotokoll](../en/CHANGELOG.md)
-- [Mitwirkungsrichtlinien](../en/CONTRIBUTING.md)
-- [Sicherheitsrichtlinie](../en/SECURITY.md)
-- [Planungsregeln](../en/PLANS.md)
-- [GitHub-Kurzbeschreibung](../en/GITHUB_DESCRIPTION.txt)
+- [Änderungsprotokoll](CHANGELOG.md) · [English](../en/CHANGELOG.md)
+- [Mitwirkungsrichtlinien](CONTRIBUTING.md) · [English](../en/CONTRIBUTING.md)
+- [Sicherheitsrichtlinie](SECURITY.md) · [English](../en/SECURITY.md)
+- [Ausführungspläne](PLANS.md) · [English](../en/PLANS.md)
+- [GitHub-Kurzbeschreibung](GITHUB_DESCRIPTION.txt) · [English](../en/GITHUB_DESCRIPTION.txt)
 
-Diese Unterlagen liegen derzeit im englischen Original vor; deutsche Übersetzungen sind noch nicht vorhanden.
+Die Übersetzungen orientieren sich an den englischen Ausgangsdokumenten. Die verbindlichen Dateipfade für Arbeitsanweisungen bleiben unverändert.
 
 ## Entwicklung und Prüfung
 
-- [Codex-Autonomie](CODEX-AUTONOMIE.md) — deutschsprachige Arbeitsregeln.
+- [Codex-Autonomie](CODEX-AUTONOMIE.md) — vollständige deutsche Fassung der [englischen Arbeitsanweisungen](../ai/CODEX-AUTONOMY.md).
 - [Aktueller Stand (Englisch)](../ai/CURRENT-STATE.md) — datierter Entwicklungsstand.
 - [Nächste Arbeiten (Englisch)](../ai/NEXT-WORK.md) — Reihenfolge der Arbeitspakete.
 - [Notizen](../notes/) und [Recherche](../research/) — historische Arbeitshilfen.
 
-**Übersetzungsstand:** Vollständige englische Fassungen von Lastenheft und Pflichtenheft stehen noch aus; sie sind keine Voraussetzung für diese reine Strukturänderung.
+**Übersetzungsstand:** Roadmap, Mehrsprachenstrategie und die oben aufgeführten Projektunterlagen sind zweisprachig. Die vollständigen englischen Fassungen der sehr umfangreichen Lasten- und Pflichtenhefte fehlen weiterhin; insbesondere Anforderungen und Traceability dürfen bei einer späteren Übersetzung nicht gekürzt werden.
 
 Zur [Repository-README](../../README.md) und zu [CONTRIBUTING](../en/CONTRIBUTING.md).
