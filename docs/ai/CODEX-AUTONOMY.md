@@ -18,7 +18,7 @@ Use the following hierarchy.
 
 ### Product and architecture
 
-- `ROADMAP.md` defines milestone order and scope.
+- `docs/en/ROADMAP.md` defines milestone order and scope.
 - `docs/adr/` records accepted architecture decisions.
 - `docs/spec/` records language-neutral observable behavior.
 - `docs/de/Pflichtenheft.md` and `docs/de/Lastenheft.md` are broad source requirements, not a request to implement everything at once.

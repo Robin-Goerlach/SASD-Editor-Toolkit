@@ -51,11 +51,11 @@ M1c is **not complete**. `docs/notes/M1c-Search-Notes.md` leaves these likely ne
 - better selected-text painting in WinForms;
 - search/replace conformance vectors.
 
-The updated `ROADMAP.md` formalizes M1c so an autonomous agent does not jump directly from M1b to broad M2 work.
+The updated `docs/en/ROADMAP.md` formalizes M1c so an autonomous agent does not jump directly from M1b to broad M2 work.
 
 ## Important note about old branch instructions
 
-`docs/notes/No-Further-M1-Scope-Expansion.md` was written for a specific historical branch/review stop point. It is not a repository-wide freeze and must not override `ROADMAP.md`, `AGENTS.md` or `docs/ai/NEXT-WORK.md`.
+`docs/notes/No-Further-M1-Scope-Expansion.md` was written for a specific historical branch/review stop point. It is not a repository-wide freeze and must not override `docs/en/ROADMAP.md`, `AGENTS.md` or `docs/ai/NEXT-WORK.md`.
 
 Several PR-2 notes are likewise historical review artifacts.
 

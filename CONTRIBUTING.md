@@ -5,7 +5,7 @@ This project is currently in repository-seed phase. Contributions should first s
 Please read:
 
 - `AGENTS.md`
-- `ROADMAP.md`
+- `docs/en/ROADMAP.md`
 - `docs/de/Mehrsprachenstrategie.md`
 - `docs/adr/`
 

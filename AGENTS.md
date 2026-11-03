@@ -9,7 +9,7 @@ Before changing code, read:
 1. `docs/ai/CURRENT-STATE.md` - dated repository snapshot and known limitations.
 2. `docs/ai/NEXT-WORK.md` - ordered autonomous work queue.
 3. `docs/ai/CODEX-AUTONOMY.md` - detailed execution, validation and stop rules.
-4. `ROADMAP.md` - milestone boundaries.
+4. `docs/en/ROADMAP.md` - milestone boundaries.
 5. Relevant files in `docs/spec/` and `docs/adr/`.
 
 For work spanning several subsystems or changing public contracts, also read `PLANS.md`.
@@ -23,7 +23,7 @@ When guidance conflicts, use this order:
 1. Current user/task instructions.
 2. This `AGENTS.md` and applicable nested `AGENTS.md` files.
 3. Accepted ADRs and language-neutral specs.
-4. `ROADMAP.md`.
+4. `docs/en/ROADMAP.md`.
 5. Current-state/work-queue documents.
 6. Historical notes in `docs/notes/`.
 

@@ -25,6 +25,12 @@ BCL + host-provided services
 
 The first milestone is **Modern FIRST-ED 0.1**: a minimal but real editor core, a WinForms demo, tests, and stable architectural seams.
 
+## Documentation
+
+- [English documentation](docs/en/README.md): [Roadmap](docs/en/ROADMAP.md), [language strategy](docs/en/Language-Strategy.md) and shared architecture/specifications.
+- [Deutsche Dokumentation](docs/de/README.md): [Roadmap](docs/de/ROADMAP.md), [Lastenheft](docs/de/Lastenheft.md), [Pflichtenheft](docs/de/Pflichtenheft.md) und [Mehrsprachenstrategie](docs/de/Mehrsprachenstrategie.md).
+- [Documentation overview](docs/README.md) maps shared technical and historical material.
+
 ## Current status
 
 The repository has moved beyond its original seed. The Core, WinForms adapter and Modern FIRST-ED sample support basic editing, undo/redo, file storage, command-driven keyboard navigation and an initial UI-independent search service. Windows GitHub Actions builds the full solution and runs the Core test suite.
@@ -66,7 +72,10 @@ On Linux you can work on docs and the Core project, but the WinForms project tar
 .github/workflows/               CI seed
 assets/screenshots/              README and UI concept screenshots
 docs/adr/                        architecture decision records
-docs/de/                         German Lastenheft and Pflichtenheft
+docs/de/                         German roadmap and product requirements
+docs/en/                         English roadmap and reader-facing docs
+docs/ai/                         Codex working-state documents
+docs/notes/                      Historical engineering notes
 docs/spec/                       small language-neutral practical specs
 src/Sasd.EditorToolkit.Core/     UI-independent editor core
 src/Sasd.EditorToolkit.WinForms/ WinForms adapter and editor surface
