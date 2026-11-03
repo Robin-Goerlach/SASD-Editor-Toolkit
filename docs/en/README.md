@@ -13,8 +13,8 @@
 
 Both complete German source specifications now have English translations:
 
-- [Lastenheft — English requirements specification](Lastenheft.md) · [German original](../de/Lastenheft.md).
-- [Pflichtenheft — English implementation specification](Pflichtenheft.md) · [German original](../de/Pflichtenheft.md).
+- [Requirements specification](Requirements-Specification.md) · [German original](../de/Lastenheft.md).
+- [Implementation specification](Implementation-Specification.md) · [German original](../de/Pflichtenheft.md).
 
 The translations preserve requirement identifiers, historical routine names, full traceability and the original chapter structure. German originals remain authoritative when resolving ambiguities. Neither document should be mistaken for a report that the listed requirements are already implemented.
 
@@ -24,7 +24,7 @@ The translations preserve requirement identifiers, historical routine names, ful
 - [Developer Guide](Developer-Guide.md) · [Deutsch](../de/Entwicklerhandbuch.md) — build, API and host integration.
 - [Testing Guide](Testing-Guide.md) · [Deutsch](../de/Testhandbuch.md) — test catalog, automation and manual evidence.
 - [User Guide](User-Guide.md) · [Deutsch](../de/Benutzerhandbuch.md) — current FIRST-ED UI and limitations.
-- [Historical Traceability](Historical-Traceability.md) · [Deutsch](../de/Historical-Traceability.md) — origins and explicit exclusions.
+- [Historical Traceability](Historical-Traceability.md) · [Deutsch](../de/Historische-Nachverfolgung.md) — origins and explicit exclusions.
 - [Release Checklist](Release-Checklist.md) · [Deutsch](../de/Release-Checkliste.md) — future release gates.
 - [ADR-0006 — standalone architecture (proposed)](../adr/ADR-0006-standalone-toolkit-architecture.md) — pending design clarification.
 

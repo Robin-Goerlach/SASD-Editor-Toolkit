@@ -1,6 +1,6 @@
 # Architecture — SASD Editor Toolkit
 
-[Deutsch](../de/Architektur.md) · [English documentation index](README.md) · [Implementation specification](Pflichtenheft.md) · [Roadmap](ROADMAP.md)
+[Deutsch](../de/Architektur.md) · [English documentation index](README.md) · [Implementation specification](Implementation-Specification.md) · [Roadmap](ROADMAP.md)
 
 **Status:** architecture baseline for the independent product, describing actual and target states; **not** a release approval.  
 **Snapshot:** 2026-11-03, inspected against \`main\` (\`820dc9f\`).  
@@ -203,7 +203,7 @@ Accepted: ADR-0001 through ADR-0005 (C# reference, language-neutral concepts, re
 
 ## 13. References and navigation
 
-- [Requirements specification](Lastenheft.md), [Implementation specification](Pflichtenheft.md): product requirements and target solution.
+- [Requirements specification](Requirements-Specification.md), [Implementation specification](Implementation-Specification.md): product requirements and target solution.
 - [Roadmap](ROADMAP.md): milestone planning and evidenced progress.
 - [Architecture Decision Records](../adr/): accepted technical decisions.
 - [Editor Model](../spec/Editor-Model.md), [Text Buffer Behavior](../spec/Text-Buffer-Behavior.md), [Command IDs](../spec/Command-Ids.md): normative language-neutral contracts.

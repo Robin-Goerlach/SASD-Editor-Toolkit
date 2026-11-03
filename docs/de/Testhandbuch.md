@@ -160,4 +160,4 @@ Ergebnis: PASS | FAIL | BLOCKED (für genau diesen Prüfumfang)
 Prüfer / Freigabe:
 \`\`\`
 
-Siehe auch [Historische Nachverfolgung](Historical-Traceability.md) und [Entwicklerhandbuch](Entwicklerhandbuch.md). 
+Siehe auch [Historische Nachverfolgung](Historische-Nachverfolgung.md) und [Entwicklerhandbuch](Entwicklerhandbuch.md). 

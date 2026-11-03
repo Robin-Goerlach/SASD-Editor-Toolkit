@@ -1,6 +1,6 @@
 # Historical Traceability — SASD Editor Toolkit
 
-[Deutsch](../de/Historical-Traceability.md) · [Requirements](Lastenheft.md) · [Implementation specification](Pflichtenheft.md) · [Architecture](Architecture.md)
+[Deutsch](../de/Historische-Nachverfolgung.md) · [Requirements](Requirements-Specification.md) · [Implementation specification](Implementation-Specification.md) · [Architecture](Architecture.md)
 
 **Snapshot:** 2026-11-03. This document maps historical *inspiration* to the independent modern toolkit architecture and requirements. It does **not** claim full behavioral parity with the original Turbo Editor Toolbox or certify product acceptance.
 
@@ -21,8 +21,8 @@ SASD Editor Toolkit is built as an **independent text-editing construction kit**
 | Source | Purpose | Authority |
 |---|---|---|
 | *Turbo Editor Toolbox v1.0 — Owner's Handbook* | Historical feature/terminology context | Reference only; no copying authorization |
-| [Requirements specification](Lastenheft.md), especially chs. 25–27 | Requirement families, historical chapters, procedure inventory | Functional source requirements |
-| [Implementation specification](Pflichtenheft.md), especially chs. 38–45 | 208 mappings, 123 procedures and 46 historic global states | Planned technical allocation |
+| [Requirements specification](Requirements-Specification.md), especially chs. 25–27 | Requirement families, historical chapters, procedure inventory | Functional source requirements |
+| [Implementation specification](Implementation-Specification.md), especially chs. 38–45 | 208 mappings, 123 procedures and 46 historic global states | Planned technical allocation |
 | \`docs/adr/\` | Accepted design decisions | Binding per AGENTS |
 | \`docs/spec/\` | Platform-neutral observable behavior | Conformance contract |
 | Code and tests on \`main\` | Features actually implemented | Implementation evidence, **not automatic acceptance** |

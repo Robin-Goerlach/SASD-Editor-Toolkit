@@ -825,7 +825,7 @@ docs/
 │   ├── Benutzerhandbuch.md        # existing
 │   ├── Entwicklerhandbuch.md      # existing
 │   ├── Testhandbuch.md            # existing
-│   └── Historical-Traceability.md # existing
+│   └── Historische-Nachverfolgung.md # existing
 └── en/
     ├── README.md
     ├── ROADMAP.md

@@ -2,6 +2,8 @@
 
 ## Noch nicht veröffentlicht
 
+- Lesbare sprachgerechte Dateinamen eingeführt: englisches Lastenheft/Pflichtenheft in `Requirements-Specification.md`/`Implementation-Specification.md`, deutsche historische Nachverfolgung in `Historische-Nachverfolgung.md` umbenannt. Repositoryweite Querverweise angepasst; keine Anforderungen oder Produktfunktionen verändert.
+
 - Architekturgrundlage, Entwickler-, Test- und Benutzerhandbuch, historische Nachverfolgung und Release-Checkliste auf Deutsch und Englisch ergänzt. Architektur und aktuellen M1-Code abgeglichen, ADR-0006 als Vorschlag dokumentiert und Navigation aktualisiert. Kein Produktcode verändert.
 
 - Das vollständige deutsche Lastenheft und Pflichtenheft ins Englische übersetzt. Kapitel, Anforderungs-IDs, alle 208 Traceability-Zuordnungen, 15 Use Cases, 67 Command-IDs und historische Routinen wurden gegen das deutsche Original geprüft. Dokumentationsnavigation aktualisiert; kein Produktcode geändert.

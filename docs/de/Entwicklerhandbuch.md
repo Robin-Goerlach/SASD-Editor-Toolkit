@@ -183,7 +183,7 @@ await storage.SaveFileAsync(loaded.Document);
 - Benutzerfunktion → Benutzerhandbuch, DE/EN-Verweise und \`CHANGELOG.md\`.
 - Architekturänderung → beide Fassungen von \`Architektur.md\` / \`Architecture.md\`.
 - Arbeit in mehreren Schichten oder öffentliche API → Ausführungsplan nach \`docs/en/PLANS.md\`.
-- Historisch inspirierte Funktion → \`Historical-Traceability.md\` und Pflichtenheft-IDs prüfen.
+- Historisch inspirierte Funktion → \`Historische-Nachverfolgung.md\` und Pflichtenheft-IDs prüfen.
 
 Vor Abschluss: \`dotnet test\`, \`git diff --check\`, Git-Status, CI-Nachweis. Keine Fremdänderungen verwerfen, keine Secrets/Benutzerdateien committen und keinen Force-Push. Direkte Arbeit an \`main\` gilt nur im aktuellen Single-Developer-Workflow laut AGENTS.
 

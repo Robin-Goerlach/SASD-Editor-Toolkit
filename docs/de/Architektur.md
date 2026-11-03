@@ -210,4 +210,4 @@ Bereits akzeptiert: ADR-0001 bis ADR-0005 (C#-Referenz, sprachneutrale Konzepte,
 - [Architekturentscheidungen](../adr/): akzeptierte technische Grundsatzentscheidungen.
 - [Editor Model](../spec/Editor-Model.md), [Text Buffer Behavior](../spec/Text-Buffer-Behavior.md), [Command IDs](../spec/Command-Ids.md): normative, sprachneutrale Verträge.
 - [Entwicklerhandbuch](Entwicklerhandbuch.md), [Testhandbuch](Testhandbuch.md), [Benutzerhandbuch](Benutzerhandbuch.md): Umsetzung, Prüfung, Bedienung.
-- [Historische Nachverfolgung](Historical-Traceability.md): Herkunft, Kategorien und Prüflücken.
+- [Historische Nachverfolgung](Historische-Nachverfolgung.md): Herkunft, Kategorien und Prüflücken.

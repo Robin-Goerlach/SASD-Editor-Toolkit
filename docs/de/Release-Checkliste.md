@@ -56,4 +56,4 @@ Datum:
 Rollback-/Hotfix-Plan:
 \`\`\`
 
-**Wichtig:** Eine neu erstellte Dokumentation oder ein Proposed-ADR bestätigt keinen Produktmeilenstein. Weitere Einzelheiten stehen in [Testhandbuch](Testhandbuch.md) und [Historical Traceability](Historical-Traceability.md).
+**Wichtig:** Eine neu erstellte Dokumentation oder ein Proposed-ADR bestätigt keinen Produktmeilenstein. Weitere Einzelheiten stehen in [Testhandbuch](Testhandbuch.md) und [Historische Nachverfolgung](Historische-Nachverfolgung.md).
