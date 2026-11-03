@@ -821,11 +821,11 @@ docs/
 │   ├── ROADMAP.md
 │   ├── Lastenheft.md
 │   ├── Pflichtenheft.md
-│   ├── Architektur.md             # planned
-│   ├── Benutzerhandbuch.md        # planned
-│   ├── Entwicklerhandbuch.md      # planned
-│   ├── Testhandbuch.md            # planned
-│   └── Historical-Traceability.md # planned
+│   ├── Architektur.md             # existing
+│   ├── Benutzerhandbuch.md        # existing
+│   ├── Entwicklerhandbuch.md      # existing
+│   ├── Testhandbuch.md            # existing
+│   └── Historical-Traceability.md # existing
 └── en/
     ├── README.md
     ├── ROADMAP.md
@@ -840,7 +840,7 @@ tests/
 samples/
 ```
 
-The implementation specification determines the concrete structure. The directory organization updated on 3 November 2026 places English repository guidance under `docs/en/`, while German source requirements stay under `docs/de/`. Entries marked “planned” are requirements, not assertions of existing files. Public APIs need XML documentation, short examples and information about side effects, threading, cancellation, error conditions and API stability.
+The implementation specification determines the concrete structure. The directory organization updated on 3 November 2026 places English repository guidance under `docs/en/`, while German source requirements stay under `docs/de/`. Guides marked “existing” were added on 2026-11-03. Their existence does not certify that planned product features have been accepted. Public APIs need XML documentation, short examples and information about side effects, threading, cancellation, error conditions and API stability.
 
 ---
 

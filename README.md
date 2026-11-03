@@ -23,12 +23,15 @@ Sasd.EditorToolkit.Core
 BCL + host-provided services
 ```
 
-The first milestone is **Modern FIRST-ED 0.1**: a minimal but real editor core, a WinForms demo, tests, and stable architectural seams.
+The first milestone is **Modern FIRST-ED 0.1**: a minimal but real editor core, a WinForms demo, tests, and stable architectural seams. The standalone Toolkit does **not** depend on migration from the separate SASD Editor Toolbox or on the separate SASD UI Toolkit.
 
 ## Documentation
 
 - [English documentation](docs/en/README.md): [Roadmap](docs/en/ROADMAP.md), [requirements specification](docs/en/Lastenheft.md), [implementation specification](docs/en/Pflichtenheft.md), [language strategy](docs/en/Language-Strategy.md) and shared architecture/specifications.
 - [Deutsche Dokumentation](docs/de/README.md): [Roadmap](docs/de/ROADMAP.md), [Lastenheft](docs/de/Lastenheft.md), [Pflichtenheft](docs/de/Pflichtenheft.md) und [Mehrsprachenstrategie](docs/de/Mehrsprachenstrategie.md).
+- [Architecture](docs/en/Architecture.md) / [Architektur](docs/de/Architektur.md) — observed M1 code, ownership boundaries, and target design for the standalone Toolkit.
+- [Developer guide](docs/en/Developer-Guide.md) / [Entwicklerhandbuch](docs/de/Entwicklerhandbuch.md), [testing guide](docs/en/Testing-Guide.md) / [Testhandbuch](docs/de/Testhandbuch.md), and [user guide](docs/en/User-Guide.md) / [Benutzerhandbuch](docs/de/Benutzerhandbuch.md).
+- [Historical traceability](docs/en/Historical-Traceability.md) / [historische Nachverfolgung](docs/de/Historical-Traceability.md) and [release checklist](docs/en/Release-Checklist.md) / [Release-Checkliste](docs/de/Release-Checkliste.md).
 - [Documentation overview](docs/README.md) maps shared technical and historical material.
 - [Changelog](docs/en/CHANGELOG.md) / [Änderungsprotokoll](docs/de/CHANGELOG.md), [contribution guidelines](docs/en/CONTRIBUTING.md) / [Mitwirken](docs/de/CONTRIBUTING.md), [security policy](docs/en/SECURITY.md) / [Sicherheit](docs/de/SECURITY.md) and [execution-plan guidance](docs/en/PLANS.md) / [Ausführungspläne](docs/de/PLANS.md).
 

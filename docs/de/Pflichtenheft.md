@@ -49,7 +49,7 @@ Das Lastenheft enthält **208 formale Produkt-, Funktions- und Qualitätsanforde
 | Lastenheft | `docs/de/Lastenheft.md` |
 | Pflichtenheft | `docs/de/Pflichtenheft.md` |
 | Architekturentscheidungen | `docs/adr/ADR-XXXX-*.md` |
-| Anforderungs-Traceability | `docs/de/Historical-Traceability.md` und Anhang dieses Dokuments |
+| Anforderungs-Traceability | `docs/de/Historical-Traceability.md` (Nachweiskontext) und vollständige 208-Zeilen-Matrix in Kapitel 38 |
 | Testnachweise | automatisierte Tests und CI-Artefakte |
 | Release-Nachweise | `docs/en/CHANGELOG.md`, Release Notes und NuGet-Metadaten |
 

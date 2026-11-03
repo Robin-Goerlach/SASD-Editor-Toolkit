@@ -6,6 +6,8 @@
 
 ## Belegter Entwicklungsstand (keine Produktfreigabe)
 
+- [x] **Dokumentationsgrundlage:** Architektur, Entwickler-, Test- und Benutzerhandbuch, historische Nachverfolgung und Release-Checkliste auf Deutsch und Englisch ergänzt (03.11.2026). **Dies bestätigt keine M2/M3-Funktion oder Freigabe.**
+
 - [x] **M0:** Repository, deutsche Anforderungen, ADRs, Spezifikationen, Agentenregeln und CI-Grundlage vorhanden.
 - [x] **M1a:** UI-unabhängiges .NET-Modell, Textbearbeitung, Speicherung, grundlegendes Undo/Redo und Tests vorhanden.
 - [x] **M1b, Fundament:** WinForms-Oberfläche und FIRST-ED-Beispiel vorhanden; eine vollständige manuelle Abnahme ist nicht nachgewiesen.

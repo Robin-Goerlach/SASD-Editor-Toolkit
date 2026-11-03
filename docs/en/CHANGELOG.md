@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added bilingual architecture baseline, developer/testing/user guides, historical traceability and future release checklist for the independent Toolkit. Documented observed M1 code separately from target design, recorded ADR-0006 as proposed and updated navigation. No product code changed.
+
 - Added complete English translations of the German Lastenheft and Pflichtenheft. Verified 30/46 major chapters, all 208 requirement traceability rows, 15 use cases, 67 command catalog IDs and historical procedure inventories against the German originals; updated bilingual documentation navigation. No product code changed.
 
 

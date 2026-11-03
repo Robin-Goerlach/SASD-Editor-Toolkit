@@ -11,6 +11,16 @@
 - [Architekturentscheidungen](../adr/) — Implementierung, Umfang, Repository und Unicode.
 - [Gemeinsame Spezifikationen](../spec/) — Editormodell, Puffer, Befehle, Profile, Einstellungen und Tests.
 
+## Architektur und Handbücher
+
+- [Architektur](Architektur.md) · [English](../en/Architecture.md) — Schichten, Daten- und Befehlsfluss, Ist-/Soll-Grenzen.
+- [Entwicklerhandbuch](Entwicklerhandbuch.md) · [English](../en/Developer-Guide.md) — Build, API und Host-Integration.
+- [Testhandbuch](Testhandbuch.md) · [English](../en/Testing-Guide.md) — Prüfverfahren und Nachweise.
+- [Benutzerhandbuch](Benutzerhandbuch.md) · [English](../en/User-Guide.md) — aktuelle FIRST-ED-Bedienung und Einschränkungen.
+- [Historische Nachverfolgung](Historical-Traceability.md) · [English](../en/Historical-Traceability.md) — Herkunft und Nichtübernahmen.
+- [Release-Checkliste](Release-Checkliste.md) · [English](../en/Release-Checklist.md) — zukünftige Freigabekriterien.
+- [ADR-0006 – eigenständige Architektur (Vorschlag)](../adr/ADR-0006-standalone-toolkit-architecture.md) — noch nicht akzeptierte Klärung.
+
 ## Projektunterlagen auf Deutsch
 
 - [Änderungsprotokoll](CHANGELOG.md) · [English](../en/CHANGELOG.md)

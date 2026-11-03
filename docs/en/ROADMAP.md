@@ -6,6 +6,8 @@
 
 ## Evidenced progress (not a product release)
 
+- [x] **Documentation baseline:** bilingual architecture, developer/testing/user guides, historical traceability and release checklist added (2026-11-03). **This does not certify M2/M3 functionality or authorize release.**
+
 - [x] **M0:** Repository, German product requirements, ADRs, specifications, agent rules and CI seed exist.
 - [x] **M1a:** UI-independent .NET editor model, text operations, file storage, minimal undo/redo and tests exist.
 - [x] **M1b foundation:** WinForms surface and FIRST-ED sample exist; full interactive acceptance is not claimed.

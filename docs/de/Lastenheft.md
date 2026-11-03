@@ -821,11 +821,11 @@ docs/
 │   ├── ROADMAP.md
 │   ├── Lastenheft.md
 │   ├── Pflichtenheft.md
-│   ├── Architektur.md          # geplant
-│   ├── Benutzerhandbuch.md     # geplant
-│   ├── Entwicklerhandbuch.md   # geplant
-│   ├── Testhandbuch.md         # geplant
-│   └── Historical-Traceability.md # geplant
+│   ├── Architektur.md          # vorhanden
+│   ├── Benutzerhandbuch.md     # vorhanden
+│   ├── Entwicklerhandbuch.md   # vorhanden
+│   ├── Testhandbuch.md         # vorhanden
+│   └── Historical-Traceability.md # vorhanden
 └── en/
     ├── README.md
     ├── ROADMAP.md
@@ -840,7 +840,7 @@ tests/
 samples/
 ```
 
-Die konkrete Struktur legt das Pflichtenheft fest. Die seit dem 3. November 2026 bereinigte Ablage sieht für die englischen Projektunterlagen `docs/en/` vor; die deutschsprachigen Anforderungsdokumente verbleiben in `docs/de/`. Die als geplant gekennzeichneten Dateien sind Anforderungen und werden damit nicht als bereits vorhanden behauptet. Öffentliche APIs benötigen XML-Dokumentation, kurze Beispiele, Angaben zu Seiteneffekten, Threading, Cancellation, Fehlerzuständen und API-Stabilität.
+Die konkrete Struktur legt das Pflichtenheft fest. Die seit dem 3. November 2026 bereinigte Ablage sieht für die englischen Projektunterlagen `docs/en/` vor; die deutschsprachigen Anforderungsdokumente verbleiben in `docs/de/`. Die neu als vorhanden gekennzeichneten Handbücher wurden am 03.11.2026 ergänzt. Ihr Vorhandensein ist kein Nachweis einer fachlichen Produktabnahme. Öffentliche APIs benötigen XML-Dokumentation, kurze Beispiele, Angaben zu Seiteneffekten, Threading, Cancellation, Fehlerzuständen und API-Stabilität.
 
 ---
 

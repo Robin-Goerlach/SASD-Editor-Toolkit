@@ -11,6 +11,9 @@ Before changing code, read:
 3. `docs/ai/CODEX-AUTONOMY.md` - detailed execution, validation and stop rules.
 4. `docs/en/ROADMAP.md` - milestone boundaries.
 5. Relevant files in `docs/spec/` and `docs/adr/`.
+6. `docs/en/Architecture.md` (or `docs/de/Architektur.md`) for implementation reality, target boundaries and ownership.
+
+`ADR-0006` is **proposed**; it does not override accepted ADRs or authorize public API changes.
 
 For work spanning several subsystems or changing public contracts, also read `docs/en/PLANS.md`.
 

@@ -53,7 +53,7 @@ Requirement changes follow this procedure:
 | Requirements specification | `docs/de/Lastenheft.md` (English translation: `docs/en/Lastenheft.md`) |
 | Implementation specification | `docs/de/Pflichtenheft.md` (this English translation under `docs/en/`) |
 | Architecture decisions | `docs/adr/ADR-XXXX-*.md` |
-| Requirement traceability | `docs/de/Historical-Traceability.md` (planned) and appendix in this document |
+| Requirement traceability | `docs/de/Historical-Traceability.md` (navigation and coverage) and the full 208-row appendix in this document |
 | Test evidence | Automated tests and CI artifacts |
 | Release evidence | `docs/en/CHANGELOG.md`, release notes and NuGet metadata |
 

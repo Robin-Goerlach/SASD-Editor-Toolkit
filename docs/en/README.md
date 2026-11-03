@@ -18,6 +18,16 @@ Both complete German source specifications now have English translations:
 
 The translations preserve requirement identifiers, historical routine names, full traceability and the original chapter structure. German originals remain authoritative when resolving ambiguities. Neither document should be mistaken for a report that the listed requirements are already implemented.
 
+## Architecture and practical guides
+
+- [Architecture](Architecture.md) · [Deutsch](../de/Architektur.md) — actual M1 implementation, target architecture and ownership.
+- [Developer Guide](Developer-Guide.md) · [Deutsch](../de/Entwicklerhandbuch.md) — build, API and host integration.
+- [Testing Guide](Testing-Guide.md) · [Deutsch](../de/Testhandbuch.md) — test catalog, automation and manual evidence.
+- [User Guide](User-Guide.md) · [Deutsch](../de/Benutzerhandbuch.md) — current FIRST-ED UI and limitations.
+- [Historical Traceability](Historical-Traceability.md) · [Deutsch](../de/Historical-Traceability.md) — origins and explicit exclusions.
+- [Release Checklist](Release-Checklist.md) · [Deutsch](../de/Release-Checkliste.md) — future release gates.
+- [ADR-0006 — standalone architecture (proposed)](../adr/ADR-0006-standalone-toolkit-architecture.md) — pending design clarification.
+
 ## Repository policies and records
 
 These documents also have German translations linked from the [German documentation index](../de/README.md).

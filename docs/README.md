@@ -5,11 +5,24 @@ Reader-facing documentation is grouped by language; shared engineering materials
 - [English documentation](en/README.md)
 - [Deutsche Dokumentation](de/README.md)
 
+## Bilingual product documentation
+
+| German | English | Purpose |
+|---|---|---|
+| [Architektur](de/Architektur.md) | [Architecture](en/Architecture.md) | M1 code, target design, ownership and decisions |
+| [Entwicklerhandbuch](de/Entwicklerhandbuch.md) | [Developer Guide](en/Developer-Guide.md) | Build, embedding and extension |
+| [Testhandbuch](de/Testhandbuch.md) | [Testing Guide](en/Testing-Guide.md) | Automated/manual verification and evidence |
+| [Benutzerhandbuch](de/Benutzerhandbuch.md) | [User Guide](en/User-Guide.md) | Current Modern FIRST-ED and its limitations |
+| [Historische Nachverfolgung](de/Historical-Traceability.md) | [Historical Traceability](en/Historical-Traceability.md) | Historical concepts mapped to SASD |
+| [Release-Checkliste](de/Release-Checkliste.md) | [Release Checklist](en/Release-Checklist.md) | Future acceptance and release gates |
+
+These guides describe the **independent SASD Editor Toolkit**. Design targets are not proof of implemented features or product approval.
+
 ## Shared technical and historical material
 
 | Directory | Contents |
 |---|---|
-| [`adr/`](adr/) | Architecture Decision Records |
+| [`adr/`](adr/) | Architecture Decision Records, including [ADR-0006 (proposed standalone boundaries)](adr/ADR-0006-standalone-toolkit-architecture.md) |
 | [`spec/`](spec/) | Language-neutral editor/command/settings/conformance contracts |
 | [`ai/`](ai/) | Codex autonomy rules, current-state snapshot and ordered next work |
 | [`notes/`](notes/) | Historical engineering notes, reviews and worklogs |
