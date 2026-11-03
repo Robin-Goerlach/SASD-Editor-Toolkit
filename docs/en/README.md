@@ -11,10 +11,12 @@
 
 ## Requirements
 
-Full requirements have **not yet been translated into English**:
+Both complete German source specifications now have English translations:
 
-- [Lastenheft (German)](../de/Lastenheft.md) — product requirements.
-- [Pflichtenheft (German)](../de/Pflichtenheft.md) — technical realization and traceability.
+- [Lastenheft — English requirements specification](Lastenheft.md) · [German original](../de/Lastenheft.md).
+- [Pflichtenheft — English implementation specification](Pflichtenheft.md) · [German original](../de/Pflichtenheft.md).
+
+The translations preserve requirement identifiers, historical routine names, full traceability and the original chapter structure. German originals remain authoritative when resolving ambiguities. Neither document should be mistaken for a report that the listed requirements are already implemented.
 
 ## Repository policies and records
 

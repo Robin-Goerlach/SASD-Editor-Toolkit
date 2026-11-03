@@ -2,7 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
-- Deutsche Fassungen von Änderungsprotokoll, Mitwirkungsregeln, Sicherheitsrichtlinie, Ausführungsplänen und GitHub-Kurzbeschreibung ergänzt; die deutsche Codex-Autonomieanleitung auf den vollständigen Umfang der englischen Ausgangsfassung erweitert und zweisprachige Verzeichnisse aktualisiert. Die vollständigen englischen Übersetzungen der Anforderungsdokumente stehen noch aus.
+- Das vollständige deutsche Lastenheft und Pflichtenheft ins Englische übersetzt. Kapitel, Anforderungs-IDs, alle 208 Traceability-Zuordnungen, 15 Use Cases, 67 Command-IDs und historische Routinen wurden gegen das deutsche Original geprüft. Dokumentationsnavigation aktualisiert; kein Produktcode geändert.
+
+
+- Deutsche Fassungen von Änderungsprotokoll, Mitwirkungsregeln, Sicherheitsrichtlinie, Ausführungsplänen und GitHub-Kurzbeschreibung ergänzt; die deutsche Codex-Autonomieanleitung auf den vollständigen Umfang der englischen Ausgangsfassung erweitert und zweisprachige Verzeichnisse aktualisiert. Zu diesem Zwischenstand standen die englischen Fassungen der Anforderungsdokumente noch aus; sie wurden anschließend ergänzt.
 
 
 - Das vollständige Änderungsprotokoll, die Mitwirkungs- und Sicherheitsrichtlinien, Regeln für Ausführungspläne sowie die GitHub-Kurzbeschreibung wurden nach `docs/en/` verschoben. Der bisherige Roadmap-Verweis im Root wurde entfernt; die GitHub-Erkennungseinträge liegen weiterhin unter `.github/`. Zugehörige Verweise wurden angepasst, ohne das Editorverhalten zu verändern.

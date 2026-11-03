@@ -5,8 +5,8 @@
 ## Produktplanung
 
 - [Roadmap](ROADMAP.md) — eigenständige Toolkit-Meilensteine und belegter Fortschritt.
-- [Lastenheft](Lastenheft.md) — Produktanforderungen.
-- [Pflichtenheft](Pflichtenheft.md) — technische Realisierung und Anforderungszuordnung.
+- [Lastenheft](Lastenheft.md) — Produktanforderungen · [English](../en/Lastenheft.md).
+- [Pflichtenheft](Pflichtenheft.md) — technische Realisierung und Anforderungszuordnung · [English](../en/Pflichtenheft.md).
 - [Mehrsprachenstrategie](Mehrsprachenstrategie.md) — .NET-Referenz und mögliche Portierungen.
 - [Architekturentscheidungen](../adr/) — Implementierung, Umfang, Repository und Unicode.
 - [Gemeinsame Spezifikationen](../spec/) — Editormodell, Puffer, Befehle, Profile, Einstellungen und Tests.
@@ -28,6 +28,6 @@ Die Übersetzungen orientieren sich an den englischen Ausgangsdokumenten. Die ve
 - [Nächste Arbeiten (Englisch)](../ai/NEXT-WORK.md) — Reihenfolge der Arbeitspakete.
 - [Notizen](../notes/) und [Recherche](../research/) — historische Arbeitshilfen.
 
-**Übersetzungsstand:** Roadmap, Mehrsprachenstrategie und die oben aufgeführten Projektunterlagen sind zweisprachig. Die vollständigen englischen Fassungen der sehr umfangreichen Lasten- und Pflichtenhefte fehlen weiterhin; insbesondere Anforderungen und Traceability dürfen bei einer späteren Übersetzung nicht gekürzt werden.
+**Übersetzungsstand:** Roadmap, Mehrsprachenstrategie, Projektunterlagen sowie das vollständige Lasten- und Pflichtenheft sind auf Deutsch und Englisch vorhanden. Die englischen Anforderungsdokumente wurden anhand der Originale auf IDs, historische Routinen, Kapitel und Traceability geprüft. Bei Unklarheiten bleibt der deutsche Ursprungstext maßgeblich. Die sprachneutralen Fachspezifikationen und Architekturentscheidungen werden weiterhin einmalig in gemeinsamen Verzeichnissen verwaltet.
 
 Zur [Repository-README](../../README.md) und zu [CONTRIBUTING](../en/CONTRIBUTING.md).

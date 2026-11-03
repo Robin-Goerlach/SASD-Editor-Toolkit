@@ -2,7 +2,10 @@
 
 ## Unreleased
 
-- Added German counterparts for the changelog, contributing guide, security policy, execution-plan rules and GitHub repository description; expanded the German Codex autonomy guide into a full translation of the English canonical runbook; updated bilingual documentation indexes. The full English requirements translations remain open.
+- Added complete English translations of the German Lastenheft and Pflichtenheft. Verified 30/46 major chapters, all 208 requirement traceability rows, 15 use cases, 67 command catalog IDs and historical procedure inventories against the German originals; updated bilingual documentation navigation. No product code changed.
+
+
+- Added German counterparts for the changelog, contributing guide, security policy, execution-plan rules and GitHub repository description; expanded the German Codex autonomy guide into a full translation of the English canonical runbook; updated bilingual documentation indexes. At that stage, English requirements translations were outstanding; they were added in a subsequent documentation update.
 
 
 - Moved the full repository changelog, contributing/security guidance, execution-plan rules and GitHub description into `docs/en/`; removed the superseded root roadmap pointer and retained GitHub discovery entry points under `.github/`. Updated related documentation references without changing editor behavior.
