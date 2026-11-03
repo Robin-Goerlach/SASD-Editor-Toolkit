@@ -2,7 +2,9 @@
 
 ## Unreleased
 
-- Reorganized bilingual documentation navigation and added English/German roadmap locations under `docs/` while preserving the root roadmap as a link for compatibility. No product behavior changed.
+- Moved the full repository changelog, contributing/security guidance, execution-plan rules and GitHub description into `docs/en/`; removed the superseded root roadmap pointer and retained GitHub discovery entry points under `.github/`. Updated related documentation references without changing editor behavior.
+
+- Reorganized bilingual documentation navigation and added English/German roadmap locations under `docs/` with an initial root roadmap pointer (subsequently retired). No product behavior changed.
 
 - Added a Codex-oriented autonomous development harness: root/subtree AGENTS instructions, execution-plan rules, current-state and next-work documents, bilingual autonomy guidance and platform-aware verification scripts.
 - Formalized M1c search/selection completion in the roadmap and clarified that historical branch stop notes are not a repository-wide freeze.

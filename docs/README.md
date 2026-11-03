@@ -15,7 +15,9 @@ Reader-facing documentation is grouped by language; shared engineering materials
 | [`notes/`](notes/) | Historical engineering notes, reviews and worklogs |
 | [`research/`](research/) | Research, sources and archived context |
 
-Repository entry points remain in the root: [README](../README.md), [CONTRIBUTING](../CONTRIBUTING.md), [SECURITY](../SECURITY.md), [AGENTS](../AGENTS.md), [PLANS](../PLANS.md), [CHANGELOG](../CHANGELOG.md), [LICENSE](../LICENSE).
+**Root entry points:** [README](../README.md), [AGENTS](../AGENTS.md) and [LICENSE](../LICENSE) stay in the repository root because GitHub and development tooling expect them there.
+
+**English repository documents:** [CHANGELOG](en/CHANGELOG.md), [CONTRIBUTING](en/CONTRIBUTING.md), [SECURITY](en/SECURITY.md), [PLANS](en/PLANS.md) and [GitHub description](en/GITHUB_DESCRIPTION.txt) now live under `docs/en/`. Small compatibility/discovery pointers for contribution and security guidelines live in `.github/`.
 
 **Translation status:** the complete Lastenheft and Pflichtenheft currently exist only in German, and full English translations remain outstanding. The roadmaps and language strategies are available in both languages. A document index is not a substitute for missing translations.
 

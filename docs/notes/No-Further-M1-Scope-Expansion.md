@@ -1,4 +1,4 @@
-> Historical note: this file described the stop point of a specific earlier branch/review cycle. It is not a repository-wide development freeze. Current work is governed by `AGENTS.md`, `ROADMAP.md` and `docs/ai/NEXT-WORK.md`.
+> Historical note: this file described the stop point of a specific earlier branch/review cycle. It is not a repository-wide development freeze. Current work is governed by `AGENTS.md`, `docs/en/ROADMAP.md` and `docs/ai/NEXT-WORK.md`.
 
 # No Further M1 Scope Expansion
 

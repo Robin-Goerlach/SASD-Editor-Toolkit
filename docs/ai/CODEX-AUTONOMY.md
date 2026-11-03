@@ -29,7 +29,7 @@ Use the following hierarchy.
 - subtree `AGENTS.md` files contain component-specific rules.
 - `docs/ai/CURRENT-STATE.md` is a dated snapshot, not a substitute for inspecting Git.
 - `docs/ai/NEXT-WORK.md` is the default queue when the user says only “continue”.
-- `PLANS.md` defines when and how to keep an execution plan.
+- `docs/en/PLANS.md` defines when and how to keep an execution plan.
 
 ### Historical notes
 
@@ -102,7 +102,7 @@ For behavioral changes, identify:
 
 ### Step C - decide whether an ExecPlan is needed
 
-Use `PLANS.md`. If required, create the plan and keep working. The plan is a living engineering artifact, not a pause point.
+Use `docs/en/PLANS.md`. If required, create the plan and keep working. The plan is a living engineering artifact, not a pause point.
 
 ### Step D - implement in small coherent increments
 
@@ -147,7 +147,7 @@ git status --short
 
 ### Step F - update documentation as part of the feature
 
-When observable behavior changes, update the relevant `docs/spec/` file. When architecture changes, add or update an ADR. Update English and German narrative docs in parallel when practical. Add a concise `CHANGELOG.md` bullet for meaningful changes.
+When observable behavior changes, update the relevant `docs/spec/` file. When architecture changes, add or update an ADR. Update English and German narrative docs in parallel when practical. Add a concise `docs/en/CHANGELOG.md` bullet for meaningful changes.
 
 Comments in code should capture invariants and “why”. They are not a substitute for specs or tests.
 

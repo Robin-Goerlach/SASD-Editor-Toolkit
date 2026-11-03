@@ -10,7 +10,7 @@ Autonomie bedeutet nicht unbegrenzte Rechte. Der Arbeitsraum ist das Repository;
 
 ## Quellen der Wahrheit
 
-Reihenfolge: aktuelle Benutzeranweisung; `AGENTS.md` und lokale Agentenregeln; ADRs und `docs/spec/`; `ROADMAP.md`; `docs/ai/CURRENT-STATE.md` und `docs/ai/NEXT-WORK.md`; ältere Arbeitsnotizen.
+Reihenfolge: aktuelle Benutzeranweisung; `AGENTS.md` und lokale Agentenregeln; ADRs und `docs/spec/`; `docs/de/ROADMAP.md`; `docs/ai/CURRENT-STATE.md` und `docs/ai/NEXT-WORK.md`; ältere Arbeitsnotizen.
 
 Die Lasten-/Pflichtenhefte sind Anforderungen, aber kein Auftrag, den gesamten Umfang in einem Milestone umzusetzen.
 

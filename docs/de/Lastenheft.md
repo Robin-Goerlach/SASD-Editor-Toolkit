@@ -807,30 +807,40 @@ Der Kern muss ohne sichtbare Oberfläche nutzbar sein für:
 Das Repository muss mindestens vorsehen:
 
 ```text
-README.md
-LICENSE
-CHANGELOG.md
-CONTRIBUTING.md
-SECURITY.md
+README.md                      # GitHub-Projekteinstieg
+AGENTS.md                      # Automatische Agentenregeln
+LICENSE                        # GitHub-Lizenzkennung
+
+.github/
+├── CONTRIBUTING.md            # Verweis für GitHub
+└── SECURITY.md                # Verweis für GitHub
 
 docs/
 ├── de/
+│   ├── README.md
+│   ├── ROADMAP.md
 │   ├── Lastenheft.md
 │   ├── Pflichtenheft.md
-│   ├── Architektur.md
-│   ├── Benutzerhandbuch.md
-│   ├── Entwicklerhandbuch.md
-│   ├── Testhandbuch.md
-│   └── Historical-Traceability.md
+│   ├── Architektur.md          # geplant
+│   ├── Benutzerhandbuch.md     # geplant
+│   ├── Entwicklerhandbuch.md   # geplant
+│   ├── Testhandbuch.md         # geplant
+│   └── Historical-Traceability.md # geplant
 └── en/
-    └── entsprechende englische Dokumente
+    ├── README.md
+    ├── ROADMAP.md
+    ├── CHANGELOG.md
+    ├── CONTRIBUTING.md
+    ├── SECURITY.md
+    ├── PLANS.md
+    └── weitere englische Dokumente
 
 src/
 tests/
 samples/
 ```
 
-Die konkrete Struktur legt das Pflichtenheft fest. Öffentliche APIs benötigen XML-Dokumentation, kurze Beispiele, Angaben zu Seiteneffekten, Threading, Cancellation, Fehlerzuständen und API-Stabilität.
+Die konkrete Struktur legt das Pflichtenheft fest. Die seit dem 3. November 2026 bereinigte Ablage sieht für die englischen Projektunterlagen `docs/en/` vor; die deutschsprachigen Anforderungsdokumente verbleiben in `docs/de/`. Die als geplant gekennzeichneten Dateien sind Anforderungen und werden damit nicht als bereits vorhanden behauptet. Öffentliche APIs benötigen XML-Dokumentation, kurze Beispiele, Angaben zu Seiteneffekten, Threading, Cancellation, Fehlerzuständen und API-Stabilität.
 
 ---
 

@@ -11,6 +11,16 @@
 - [Architekturentscheidungen](../adr/) — Implementierung, Umfang, Repository und Unicode.
 - [Gemeinsame Spezifikationen](../spec/) — Editormodell, Puffer, Befehle, Profile, Einstellungen und Tests.
 
+## Projektunterlagen (zurzeit auf Englisch)
+
+- [Änderungsprotokoll](../en/CHANGELOG.md)
+- [Mitwirkungsrichtlinien](../en/CONTRIBUTING.md)
+- [Sicherheitsrichtlinie](../en/SECURITY.md)
+- [Planungsregeln](../en/PLANS.md)
+- [GitHub-Kurzbeschreibung](../en/GITHUB_DESCRIPTION.txt)
+
+Diese Unterlagen liegen derzeit im englischen Original vor; deutsche Übersetzungen sind noch nicht vorhanden.
+
 ## Entwicklung und Prüfung
 
 - [Codex-Autonomie](CODEX-AUTONOMIE.md) — deutschsprachige Arbeitsregeln.
@@ -20,4 +30,4 @@
 
 **Übersetzungsstand:** Vollständige englische Fassungen von Lastenheft und Pflichtenheft stehen noch aus; sie sind keine Voraussetzung für diese reine Strukturänderung.
 
-Zur [Repository-README](../../README.md) und zu [CONTRIBUTING](../../CONTRIBUTING.md).
+Zur [Repository-README](../../README.md) und zu [CONTRIBUTING](../en/CONTRIBUTING.md).

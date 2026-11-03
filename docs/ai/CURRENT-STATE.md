@@ -38,7 +38,7 @@ The current main branch already contains more than the original repository seed:
 - xUnit Core tests;
 - Windows GitHub Actions CI.
 
-See `CHANGELOG.md` and the code/tests for exact current behavior.
+See `docs/en/CHANGELOG.md` and the code/tests for exact current behavior.
 
 ## Current milestone interpretation
 
@@ -92,6 +92,6 @@ git pull --ff-only
 git log -5 --oneline
 ```
 
-Then inspect `CHANGELOG.md`, `docs/ai/NEXT-WORK.md`, the most relevant tests and the relevant specs/ADRs.
+Then inspect `docs/en/CHANGELOG.md`, `docs/ai/NEXT-WORK.md`, the most relevant tests and the relevant specs/ADRs.
 
 Update this snapshot after a meaningful milestone if its status becomes materially misleading. Do not churn the date/SHA after every documentation typo.

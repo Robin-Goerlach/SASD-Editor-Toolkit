@@ -42,7 +42,7 @@ Das Lastenheft enthält **208 formale Produkt-, Funktions- und Qualitätsanforde
 2. Auswirkung auf Architektur, API, Tests, Dokumentation und Meilenstein bewerten.
 3. Lastenheft und Pflichtenheft gemeinsam versionieren.
 4. Traceability-Matrix aktualisieren.
-5. Breaking Changes zusätzlich im `CHANGELOG.md` und in einer Architecture Decision Record dokumentieren.
+5. Breaking Changes zusätzlich im `docs/en/CHANGELOG.md` und in einer Architecture Decision Record dokumentieren.
 
 | Nachweistyp | Verbindlicher Speicherort |
 |---|---|
@@ -51,7 +51,7 @@ Das Lastenheft enthält **208 formale Produkt-, Funktions- und Qualitätsanforde
 | Architekturentscheidungen | `docs/adr/ADR-XXXX-*.md` |
 | Anforderungs-Traceability | `docs/de/Historical-Traceability.md` und Anhang dieses Dokuments |
 | Testnachweise | automatisierte Tests und CI-Artefakte |
-| Release-Nachweise | `CHANGELOG.md`, Release Notes und NuGet-Metadaten |
+| Release-Nachweise | `docs/en/CHANGELOG.md`, Release Notes und NuGet-Metadaten |
 
 ## 3. Lösungsstrategie
 Die Lösung wird nicht als WinForms-Anwendung mit eingebauter Editorlogik, sondern als Produktfamilie aus einem fachlichen Kern, einem Plattformadapter und Beispielhosts umgesetzt.
@@ -106,8 +106,13 @@ SASD-Editor-Toolkit/
 │   └── diagrams/
 ├── docs/
 │   ├── adr/
-│   ├── de/
-│   └── en/
+│   ├── de/                       # Deutsche Dokumentation
+│   └── en/                       # Englische Dokumentation
+│       ├── ROADMAP.md
+│       ├── CHANGELOG.md
+│       ├── CONTRIBUTING.md
+│       ├── SECURITY.md
+│       └── PLANS.md
 ├── samples/
 │   ├── Sasd.EditorToolkit.Sample.FirstEd.WinForms/
 │   └── Sasd.EditorToolkit.Sample.MicroStar.WinForms/   # ab M2
@@ -124,11 +129,11 @@ SASD-Editor-Toolkit/
 ├── global.json
 ├── SASD-Editor-Toolkit.slnx
 ├── README.md
-├── CHANGELOG.md
-├── CONTRIBUTING.md
-├── SECURITY.md
+├── AGENTS.md
 └── LICENSE
 ```
+
+**Dokumentationsablage (aktualisiert am 03.11.2026):** `README.md`, `AGENTS.md` und `LICENSE` bleiben wegen ihrer Repository-Funktion im Root. Die ausführlichen englischen Projektunterlagen liegen unter `docs/en/`; englische und deutsche Roadmaps sind getrennt abgelegt. Kleine Verweise unter `.github/CONTRIBUTING.md` und `.github/SECURITY.md` sorgen dafür, dass GitHub die entsprechenden Richtlinien weiterhin erkennt. Die Baumdarstellung dieses Abschnitts ist ein technisches Zielbild und kein Nachweis, dass alle dort genannten Sample- und Testprojekte bereits implementiert wären.
 
 Ein separates `Abstractions`-Projekt wird in Version 0.1 bewusst nicht angelegt. Schnittstellen liegen im Core in klaren Namespaces. Erst wenn mehrere unabhängig versionierte Pakete eine echte gemeinsame Vertragsassembly benötigen, wird dies über eine ADR entschieden.
 

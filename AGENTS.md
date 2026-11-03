@@ -12,7 +12,7 @@ Before changing code, read:
 4. `docs/en/ROADMAP.md` - milestone boundaries.
 5. Relevant files in `docs/spec/` and `docs/adr/`.
 
-For work spanning several subsystems or changing public contracts, also read `PLANS.md`.
+For work spanning several subsystems or changing public contracts, also read `docs/en/PLANS.md`.
 
 More-specific `AGENTS.md` files exist below `src/`, `samples/` and `tests/`. Read the one that governs every subtree you edit.
 
@@ -72,7 +72,7 @@ Ask the user only when a stop condition in `docs/ai/CODEX-AUTONOMY.md` applies.
 - Prefer correctness and clarity over micro-optimization. Performance redesigns belong behind stable interfaces and should be justified by measurement.
 - Keep cross-language observable behavior in `docs/spec/`.
 - Update English and German documentation in parallel when a user-visible or architectural behavior changes.
-- Update `CHANGELOG.md` for meaningful behavior changes.
+- Update `docs/en/CHANGELOG.md` for meaningful behavior changes.
 
 ## Validation
 

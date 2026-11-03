@@ -30,6 +30,7 @@ The first milestone is **Modern FIRST-ED 0.1**: a minimal but real editor core, 
 - [English documentation](docs/en/README.md): [Roadmap](docs/en/ROADMAP.md), [language strategy](docs/en/Language-Strategy.md) and shared architecture/specifications.
 - [Deutsche Dokumentation](docs/de/README.md): [Roadmap](docs/de/ROADMAP.md), [Lastenheft](docs/de/Lastenheft.md), [Pflichtenheft](docs/de/Pflichtenheft.md) und [Mehrsprachenstrategie](docs/de/Mehrsprachenstrategie.md).
 - [Documentation overview](docs/README.md) maps shared technical and historical material.
+- [Changelog](docs/en/CHANGELOG.md), [contribution guidelines](docs/en/CONTRIBUTING.md), [security policy](docs/en/SECURITY.md) and [execution-plan guidance](docs/en/PLANS.md).
 
 ## Current status
 
@@ -45,7 +46,7 @@ The repository is prepared for autonomous Codex work.
 - `docs/ai/CODEX-AUTONOMY.md` defines autonomy, stop conditions and the development loop.
 - `docs/ai/CURRENT-STATE.md` records a dated repository baseline.
 - `docs/ai/NEXT-WORK.md` is the ordered queue used when the instruction is simply to continue.
-- `PLANS.md` defines execution plans for substantial changes.
+- `docs/en/PLANS.md` defines execution plans for substantial changes.
 - component-specific `AGENTS.md` files protect Core/WinForms/sample/test boundaries.
 
 Typical continuation prompt: **“Continue autonomously with the first unfinished item in docs/ai/NEXT-WORK.md; follow AGENTS.md, test, document, commit and verify CI.”**

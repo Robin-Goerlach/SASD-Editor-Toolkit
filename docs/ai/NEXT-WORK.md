@@ -6,7 +6,7 @@ Do not skip an earlier unfinished item merely because a later item is more inter
 
 ## Queue rules
 
-For each item: inspect existing code/tests/specs; use an ExecPlan only when `PLANS.md` requires one; implement the smallest complete behavioral slice; add deterministic tests; update specs and English/German docs; update `CHANGELOG.md`; validate; commit a green checkpoint; then mark the queue item complete and record follow-up.
+For each item: inspect existing code/tests/specs; use an ExecPlan only when `docs/en/PLANS.md` requires one; implement the smallest complete behavioral slice; add deterministic tests; update specs and English/German docs; update `docs/en/CHANGELOG.md`; validate; commit a green checkpoint; then mark the queue item complete and record follow-up.
 
 Do not start M2 merely because an M1c item feels inconvenient.
 
